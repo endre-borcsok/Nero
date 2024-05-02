@@ -1,9 +1,9 @@
-name: Test
+name: Build
 
 on: [push]
 
 jobs:
-  test-feature:
+  test:
     runs-on: ubuntu-latest
 
     steps:
