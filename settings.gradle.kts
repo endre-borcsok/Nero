@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Nero"
 include(":app")
+include(":feature:home")
