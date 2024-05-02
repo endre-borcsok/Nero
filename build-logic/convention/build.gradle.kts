@@ -38,5 +38,9 @@ gradlePlugin {
             id = "nero.android.application"
             implementationClass = "com.ebsoftware.convention.AndroidApplicationConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = "nero.android.application.compose"
+            implementationClass = "com.ebsoftware.convention.AndroidApplicationComposeConventionPlugin"
+        }
     }
 }

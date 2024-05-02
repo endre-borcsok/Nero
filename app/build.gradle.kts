@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.nero.android.application)
+    alias(libs.plugins.nero.android.application.compose)
 }
 
 android {
@@ -24,5 +25,6 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
 }
