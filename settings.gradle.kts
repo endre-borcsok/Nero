@@ -14,6 +14,8 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "Nero"
 include(":app")
 include(":feature:home")

@@ -2,6 +2,7 @@ package com.ebsoftware.convention
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
+import com.ebsoftware.convention.common.configureGradleManagedDevices
 import com.ebsoftware.convention.common.configureKotlinAndroid
 import com.ebsoftware.convention.common.disableUnnecessaryAndroidTests
 import org.gradle.api.Plugin
@@ -17,9 +18,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<LibraryExtension> {
-                configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 34
                 testOptions.animationsDisabled = true
+                configureKotlinAndroid(this)
+                configureGradleManagedDevices(this)
             }
             extensions.configure<LibraryAndroidComponentsExtension> {
                 disableUnnecessaryAndroidTests(target)

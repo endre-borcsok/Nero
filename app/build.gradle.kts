@@ -25,6 +25,9 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.home)
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.navigation.compose)
 }
