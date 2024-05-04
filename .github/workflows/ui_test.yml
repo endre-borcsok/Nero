@@ -36,3 +36,4 @@ jobs:
           ./gradlew pixel6api33aospatdDebugAndroidTest
           -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
           -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
+          --stacktrace
