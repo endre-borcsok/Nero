@@ -32,4 +32,4 @@ jobs:
         run: yes | "$ANDROID_HOME"/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Run Tests with Gradle
-        run:  ./gradlew cleanManagedDevices --unused-only &&c./gradlew pixel6api33aospatdDebugAndroidTest -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
+        run:  ./gradlew cleanManagedDevices --unused-only && ./gradlew pixel6api33aospatdDebugAndroidTest -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
