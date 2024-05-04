@@ -32,4 +32,4 @@ jobs:
         run: yes | "$ANDROID_HOME"/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Run Tests with Gradle
-        run: ./gradlew pixel4api29aospatdDebugAndroidTest
+        run: ./gradlew pixel4api29aospatdDebugAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu=swiftshader_indirect
