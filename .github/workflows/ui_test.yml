@@ -34,9 +34,12 @@ jobs:
       - name: List images
         run: sdkmanager --list
 
+      - name: List images
+        run: sdkmanager --list
+
       - name: Run instrumented tests with GMD
         run: ./gradlew cleanManagedDevices --unused-only &&
-          ./gradlew pixel6api33aospatdDebugAndroidTest
+          ./gradlew pixel6api33aosp_atdDebugAndroidTest
           -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
           -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
           --stacktrace
