@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Tests with Gradle
         run:  ./gradlew cleanManagedDevices --unused-only &&
-              ./gradlew pixel4api30aospatdDebugAndroidTest 
+              ./gradlew pixel4api33aospatdDebugAndroidTest 
               -Dorg.gradle.workers.max=1
               -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
               -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
