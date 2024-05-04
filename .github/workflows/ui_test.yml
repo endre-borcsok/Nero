@@ -31,12 +31,6 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      - name: List images
-        run: sdkmanager --list
-
-      - name: List images
-        run: sdkmanager --install system-images;android-34;aosp_atd;x86_64
-
       - name: Run instrumented tests with GMD
         run: ./gradlew cleanManagedDevices --unused-only &&
           ./gradlew pixel6api33aosp_atdDebugAndroidTest
