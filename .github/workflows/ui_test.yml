@@ -39,5 +39,4 @@ jobs:
           ./gradlew nexusOne30aosp_atdDebugAndroidTest
           -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
           -Pandroid.experimental.testOptions.managedDevices.maxConcurrentDevices=1
-          -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=false
-          --stacktrace
+          -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=180
