@@ -33,5 +33,6 @@ jobs:
 
       - name: Run instrumented tests with GMD
         run: ./gradlew cleanManagedDevices --unused-only &&
-          ./gradlew ciDemoDebugAndroidTest
-          -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
+          ./gradlew pixel6api33aospatdDebugAndroidTest
+          -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
+          -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
