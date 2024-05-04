@@ -21,6 +21,7 @@ internal fun configureGradleManagedDevices(
                         device = deviceConfig.device
                         apiLevel = deviceConfig.apiLevel
                         systemImageSource = deviceConfig.systemImageSource
+                        require64Bit = true
                     }
                 }
             }
