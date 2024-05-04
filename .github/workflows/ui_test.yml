@@ -23,4 +23,4 @@ jobs:
         uses: gradle/gradle-build-action@v3
 
       - name: Run Tests with Gradle
-        run: ./gradlew pixel4api31aospDebugAndroidTest
+        run: ./gradlew pixel2api31aospDebugAndroidTest
