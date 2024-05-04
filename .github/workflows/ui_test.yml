@@ -31,9 +31,12 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: List images
+        run: sdkmanager --channel=0 "system-images;android-30;aosp_atd;x86_64"
+
       - name: Run instrumented tests with GMD
         run: ./gradlew cleanManagedDevices --unused-only &&
-          ./gradlew nexusOne30aosp_atdDebugAndroidTest
+          ./gradlew nexusOneapi30aosp_atdDebugAndroidTest
           -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
           -Pandroid.experimental.testOptions.managedDevices.maxConcurrentDevices=1
           -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=180
