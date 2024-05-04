@@ -38,5 +38,6 @@ jobs:
         run: ./gradlew cleanManagedDevices --unused-only &&
           ./gradlew nexusOne30aosp_atdDebugAndroidTest
           -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
-          -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
+          -Pandroid.experimental.testOptions.managedDevices.maxConcurrentDevices=1
+          -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=false
           --stacktrace
