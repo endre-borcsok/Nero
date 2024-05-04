@@ -32,4 +32,4 @@ jobs:
         run: yes | "$ANDROID_HOME"/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Run Tests with Gradle
-        run: ./gradlew pixel4api30googleatdDebugAndroidTest
+        run: ./gradlew pixel4api29aospatdDebugAndroidTest
