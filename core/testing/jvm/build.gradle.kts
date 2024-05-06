@@ -7,5 +7,7 @@ android {
 }
 
 dependencies {
-    testImplementation(libs.junit)
+    api(libs.junit)
+    api(libs.mockito.kotlin)
+    api(libs.kotlinx.coroutines.test)
 }

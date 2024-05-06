@@ -13,22 +13,19 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface StocksNetworkModule {
+internal object AvStocksNetworkModule {
 
-    @Binds
+    @Provides
     @Singleton
-    fun bindStocksApi(impl: AvRetrofitStocksApi): StocksApi
+    fun provideRetrofitStocksService(
+        factory: AvRetrofitStocksServiceFactory
+    ) = factory()
 
-    companion object {
+    @Provides
+    @Singleton
+    fun provideRetrofitBaseUrl() = AvBaseUrl.URL
 
-        @Provides
-        @Singleton
-        fun provideRetrofitStocksService(
-            factory: AvRetrofitStocksServiceFactory
-        ) = factory()
-
-        @Provides
-        @Singleton
-        fun provideRetrofitBaseUrl() = AvBaseUrl.URL
-    }
+    @Provides
+    @Singleton
+    fun provideApiKey() = "demo"
 }

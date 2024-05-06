@@ -7,5 +7,5 @@ android {
 }
 
 dependencies {
-    androidTestImplementation(libs.androidx.junit)
+    api(libs.androidx.junit)
 }

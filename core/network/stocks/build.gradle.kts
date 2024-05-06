@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.nero.android.library)
     alias(libs.plugins.nero.android.hilt)
+    id("kotlinx-serialization")
 }
 
 android {
