@@ -17,7 +17,7 @@ internal class AvRetrofitStocksApi @Inject constructor(
             symbol = ticker,
             function = FUNC_GLOBAL_QUOTE,
             apikey = apiKey
-        ).transform()
+        ).quote.transform()
 
     companion object {
         const val FUNC_GLOBAL_QUOTE = "GLOBAL_QUOTE"

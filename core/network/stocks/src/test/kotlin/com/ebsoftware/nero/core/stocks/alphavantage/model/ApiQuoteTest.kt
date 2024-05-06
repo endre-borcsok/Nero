@@ -15,7 +15,7 @@ class ApiQuoteTest {
             ),
             actual = AvQuote(
                 ticker = "AAPL",
-                price = 2.5,
+                price = "2.5",
             ).transform()
         )
     }
