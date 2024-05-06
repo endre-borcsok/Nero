@@ -19,5 +19,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "Nero"
 include(":app")
 include(":feature:home")
+include(":core:network:base")
+include(":core:network:stocks")
 include(":core:testing:android")
 include(":core:testing:jvm")

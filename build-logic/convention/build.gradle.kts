@@ -54,5 +54,9 @@ gradlePlugin {
             id = "nero.android.library.compose"
             implementationClass = "com.ebsoftware.convention.AndroidLibraryComposeConventionPlugin"
         }
+        register("androidHilt") {
+            id = "nero.android.hilt"
+            implementationClass = "com.ebsoftware.convention.AndroidHiltConventionPlugin"
+        }
     }
 }
