@@ -34,6 +34,9 @@ jobs:
       - name: Download images
         run: sdkmanager --channel=0 "system-images;android-30;aosp_atd;x86_64"
 
+      - name: Run unit tests
+        run: ./gradlew test
+
       # Incompatible with free tier GitHub Actions
       # https://issuetracker.google.com/issues/287312019
       - name: Run instrumented tests with GMD
