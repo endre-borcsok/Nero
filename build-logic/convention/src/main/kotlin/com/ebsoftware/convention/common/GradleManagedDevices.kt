@@ -8,7 +8,7 @@ import org.gradle.kotlin.dsl.invoke
 internal fun configureGradleManagedDevices(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
-    val pixel6 = DeviceConfig("Pixel 6", 31, "aosp")
+    val pixel6 = DeviceConfig("Pixel 6", 33, "aosp_atd", true)
 
     val allDevices = listOf(pixel6)
     val ciDevices = listOf(pixel6)
@@ -21,6 +21,7 @@ internal fun configureGradleManagedDevices(
                         device = deviceConfig.device
                         apiLevel = deviceConfig.apiLevel
                         systemImageSource = deviceConfig.systemImageSource
+                        require64Bit = deviceConfig.require64Bit
                     }
                 }
             }
@@ -39,6 +40,7 @@ private data class DeviceConfig(
     val device: String,
     val apiLevel: Int,
     val systemImageSource: String,
+    val require64Bit: Boolean,
 ) {
     val taskName = buildString {
         append(device.lowercase().replace(" ", ""))
