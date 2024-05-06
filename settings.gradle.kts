@@ -19,3 +19,5 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "Nero"
 include(":app")
 include(":feature:home")
+include(":core:testing:android")
+include(":core:testing:jvm")

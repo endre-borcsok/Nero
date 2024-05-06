@@ -3,7 +3,9 @@ package com.ebsoftware.convention
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.BaseExtension
+import com.ebsoftware.convention.common.configureAndroidTests
 import com.ebsoftware.convention.common.configureGradleManagedDevices
+import com.ebsoftware.convention.common.configureJvmTests
 import com.ebsoftware.convention.common.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -20,6 +22,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             extensions.configure<ApplicationExtension> {
                 defaultConfig.targetSdk = 34
                 configureKotlinAndroid(this)
+                configureJvmTests(this)
+                configureAndroidTests(this)
                 configureGradleManagedDevices(this)
             }
         }

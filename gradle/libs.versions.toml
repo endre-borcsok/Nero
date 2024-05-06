@@ -43,3 +43,4 @@ nero-android-application = { id = "nero.android.application", version = "unspeci
 nero-android-application-compose = { id = "nero.android.application.compose", version = "unspecified" }
 nero-android-library = { id = "nero.android.library", version = "unspecified" }
 nero-android-library-compose = { id = "nero.android.library.compose", version = "unspecified" }
+nero-android-feature = { id = "nero.android.feature", version = "unspecified" }
