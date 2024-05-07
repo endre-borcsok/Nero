@@ -18,6 +18,9 @@ internal fun Project.configureAndroidTests(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     commonExtension.apply {
+        defaultConfig {
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
         dependencies {
             add("androidTestImplementation", project(":core:testing:android"))
         }
