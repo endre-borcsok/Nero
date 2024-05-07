@@ -9,14 +9,12 @@ import javax.inject.Singleton
 @Singleton
 internal class AvRetrofitStocksApi @Inject constructor(
     private val service: AvRetrofitStocksService,
-    private val apiKey: String,
 ) : StocksApi {
 
     override suspend fun getQuote(ticker: String): ApiQuote =
         service.getQuery(
             symbol = ticker,
             function = FUNC_GLOBAL_QUOTE,
-            apikey = apiKey
         ).quote.transform()
 
     companion object {

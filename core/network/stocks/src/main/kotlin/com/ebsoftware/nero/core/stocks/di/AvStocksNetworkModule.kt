@@ -1,10 +1,7 @@
 package com.ebsoftware.nero.core.stocks.di
 
-import com.ebsoftware.nero.core.stocks.StocksApi
 import com.ebsoftware.nero.core.stocks.alphavantage.AvBaseUrl
-import com.ebsoftware.nero.core.stocks.alphavantage.AvRetrofitStocksApi
 import com.ebsoftware.nero.core.stocks.alphavantage.AvRetrofitStocksServiceFactory
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

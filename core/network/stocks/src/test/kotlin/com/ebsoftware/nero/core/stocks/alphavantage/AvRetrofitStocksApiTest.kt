@@ -30,7 +30,6 @@ class AvRetrofitStocksApiTest {
             service.getQuery(
                 symbol = "AAPL",
                 function = FUNC_GLOBAL_QUOTE,
-                apikey = "apikey"
             ),
         ) doReturn GlobalQuoteResponse(
             quote = AvQuote.EMPTY
@@ -39,7 +38,6 @@ class AvRetrofitStocksApiTest {
             expected = AvQuote.EMPTY.transform(),
             actual = AvRetrofitStocksApi(
                 service = service,
-                apiKey = "apikey"
             ).getQuote("AAPL")
         )
     }
@@ -49,17 +47,17 @@ class AvRetrofitStocksApiTest {
     fun `when API request is sent with demo key then response is serialised`() = runTest {
         AvRetrofitStocksApi(
             service = AvRetrofitStocksServiceFactory(
-                okHttpClient = OkHttpClient.Builder()
+                okHttpClientBuilder = OkHttpClient.Builder()
                     .addInterceptor(
                         HttpLoggingInterceptor()
                             .apply {
                                 setLevel(HttpLoggingInterceptor.Level.BODY)
                             },
-                    ).build(),
+                    ),
                 baseUrl = AvStocksNetworkModule.provideRetrofitBaseUrl(),
+                apiKeyInterceptor = AvApiKeyInterceptor(AvStocksNetworkModule.provideApiKey()),
                 serializer = AvStocksNetworkModule.providesNetworkJson()
             ).invoke(),
-            apiKey = AvStocksNetworkModule.provideApiKey()
         )
             .getQuote("IBM")
             .also(::println)

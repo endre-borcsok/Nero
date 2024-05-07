@@ -14,7 +14,7 @@ internal object BaseNetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient =
+    fun provideOkHttpClient(): OkHttpClient.Builder =
         OkHttpClient.Builder()
             .addInterceptor(
                 HttpLoggingInterceptor()
@@ -24,5 +24,4 @@ internal object BaseNetworkModule {
                         }
                     },
             )
-            .build()
 }

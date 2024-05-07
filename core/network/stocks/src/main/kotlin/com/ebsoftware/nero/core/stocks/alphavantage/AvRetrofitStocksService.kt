@@ -1,9 +1,9 @@
 package com.ebsoftware.nero.core.stocks.alphavantage
 
-import com.ebsoftware.nero.core.stocks.alphavantage.model.AvQuote
 import com.ebsoftware.nero.core.stocks.alphavantage.model.GlobalQuoteResponse
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -18,19 +18,23 @@ internal interface AvRetrofitStocksService {
     suspend fun getQuery(
         @Query("function") function: String,
         @Query("symbol") symbol: String,
-        @Query("apikey") apikey: String,
     ) : GlobalQuoteResponse
 }
 
 @Singleton
 internal class AvRetrofitStocksServiceFactory @Inject constructor(
-    private val okHttpClient: OkHttpClient,
+    private val okHttpClientBuilder: OkHttpClient.Builder,
     private val baseUrl: AvBaseUrl,
+    private val apiKeyInterceptor: AvApiKeyInterceptor,
     private val serializer: Json,
 ) {
     operator fun invoke(): AvRetrofitStocksService =
         Retrofit.Builder()
-            .client(okHttpClient)
+            .client(
+                okHttpClientBuilder
+                    .addInterceptor(apiKeyInterceptor)
+                    .build()
+            )
             .baseUrl(baseUrl.value)
             .addConverterFactory(serializer.asConverterFactory("application/json".toMediaType()))
             .build()
