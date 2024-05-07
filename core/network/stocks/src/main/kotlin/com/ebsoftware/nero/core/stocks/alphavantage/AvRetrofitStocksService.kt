@@ -3,7 +3,6 @@ package com.ebsoftware.nero.core.stocks.alphavantage
 import com.ebsoftware.nero.core.stocks.alphavantage.model.GlobalQuoteResponse
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
-import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

@@ -30,6 +30,8 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.room.gradlePlugin)
 }
 
 gradlePlugin {
@@ -57,6 +59,10 @@ gradlePlugin {
         register("androidHilt") {
             id = "nero.android.hilt"
             implementationClass = "com.ebsoftware.convention.AndroidHiltConventionPlugin"
+        }
+        register("androidRoom") {
+            id = "nero.android.room"
+            implementationClass = "com.ebsoftware.convention.AndroidRoomConventionPlugin"
         }
     }
 }
