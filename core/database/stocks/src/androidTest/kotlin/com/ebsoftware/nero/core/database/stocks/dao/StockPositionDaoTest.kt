@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.ebsoftware.nero.core.database.stocks.StockDatabase
 import com.ebsoftware.nero.core.database.stocks.model.PositionEntity
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
@@ -41,7 +42,7 @@ class StockPositionDaoTest {
                 PositionEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
                 PositionEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L)
             ),
-            actual = stockPositionDao.getAll()
+            actual = stockPositionDao.getAll().first()
         )
     }
 
@@ -58,14 +59,14 @@ class StockPositionDaoTest {
                 PositionEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
                 PositionEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L)
             ),
-            actual = stockPositionDao.getAll("AAPL")
+            actual = stockPositionDao.getAll("AAPL").first()
         )
         assertEquals(
             expected = listOf(
                 PositionEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
                 PositionEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L)
             ),
-            actual = stockPositionDao.getAll("IBM")
+            actual = stockPositionDao.getAll("IBM").first()
         )
     }
 
@@ -81,7 +82,7 @@ class StockPositionDaoTest {
             expected = listOf(
                 PositionEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
             ),
-            actual = stockPositionDao.getAll()
+            actual = stockPositionDao.getAll().first()
         )
     }
 }
