@@ -82,3 +82,5 @@
 /stocks/build/kotlin/compileReleaseKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len
 /stocks/build/intermediates/java_res/release/processReleaseJavaRes/out/META-INF/stocks_release.kotlin_module
 /stocks/build/tmp/kotlin-classes/release/META-INF/stocks_release.kotlin_module
+/stocks/build/tmp/kotlin-classes/debug/com/ebsoftware/nero/core/model/StockPosition$Companion.class
+/stocks/build/tmp/kotlin-classes/debug/com/ebsoftware/nero/core/model/StockPosition.class
