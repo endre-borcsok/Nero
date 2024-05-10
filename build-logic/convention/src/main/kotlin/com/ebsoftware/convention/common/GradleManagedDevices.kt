@@ -8,7 +8,7 @@ import org.gradle.kotlin.dsl.invoke
 internal fun configureGradleManagedDevices(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
-    val pixel6 = DeviceConfig("Pixel 6", 33, "aosp_atd", true)
+    val pixel6 = DeviceConfig("Pixel 6", 30, "aosp_atd", true)
 
     val allDevices = listOf(pixel6)
     val ciDevices = listOf(pixel6)
