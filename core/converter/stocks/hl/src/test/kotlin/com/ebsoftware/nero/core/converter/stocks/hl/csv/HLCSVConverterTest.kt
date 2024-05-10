@@ -11,9 +11,9 @@ class HLCSVConverterTest {
     @Test
     fun `when CSV file converter is used then data is mapped correctly`() {
         val testStream =
-                "Security movements for:, 3M Company, Common Stock USD 0.01 (CDI) , , ,\n" +
-                "Client Name: Mr Endre Borcsok , , , , ,\n" +
-                "Client Number: 2537294 , , , , ,\n" +
+                "Security movements for:, Nice Company, Common Stock USD 0.01 (CDI) , , ,\n" +
+                "Client Name: Mr John Smith , , , , ,\n" +
+                "Client Number: 00000 , , , , ,\n" +
                 "\n" +
                 "HL Stocks & Shares ISA , , , ,\n" +
                 "\n" +
