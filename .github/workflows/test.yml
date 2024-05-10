@@ -40,8 +40,6 @@ jobs:
       - name: Run unit tests
         run: ./gradlew test
 
-      # Incompatible with free tier GitHub Actions
-      # https://issuetracker.google.com/issues/287312019
       - name: Run instrumented tests with GMD
         run: ./gradlew cleanManagedDevices --unused-only &&
           ./gradlew pixel6api30aosp_atdDebugAndroidTest
