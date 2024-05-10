@@ -108,3 +108,11 @@ local.properties
 /core/model/stocks/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/stocks_debug.kotlin_module
 /core/model/stocks/build/tmp/kotlin-classes/debug/META-INF/stocks_debug.kotlin_module
 /core/model/stocks/build/intermediates/annotations_typedef_file/debug/extractDebugAnnotations/typedefs.txt
+/core/model/stocks/build/.transforms/03600560365b0ee87d0288472ecec090/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin
+/core/model/stocks/build/.transforms/03600560365b0ee87d0288472ecec090/results.bin
+/core/model/stocks/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/ebsoftware/nero/core/model/SecurityMovement$Companion.class
+/core/model/stocks/build/tmp/kotlin-classes/release/com/ebsoftware/nero/core/model/SecurityMovement$Companion.class
+/core/model/stocks/build/.transforms/03600560365b0ee87d0288472ecec090/transformed/bundleLibRuntimeToDirDebug/com/ebsoftware/nero/core/model/SecurityMovement$Companion.dex
+/core/model/stocks/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/ebsoftware/nero/core/model/SecurityMovement.class
+/core/model/stocks/build/tmp/kotlin-classes/release/com/ebsoftware/nero/core/model/SecurityMovement.class
+/core/model/stocks/build/.transforms/03600560365b0ee87d0288472ecec090/transformed/bundleLibRuntimeToDirDebug/com/ebsoftware/nero/core/model/SecurityMovement.dex
