@@ -47,7 +47,7 @@ jobs:
       # https://issuetracker.google.com/issues/287312019
       - name: Run instrumented tests with GMD
         run: ./gradlew cleanManagedDevices --unused-only &&
-          ./gradlew pixel6api33aosp_atdDebugAndroidTest
+          ./gradlew pixel6api30aosp_atdDebugAndroidTest
           -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
           -Pandroid.experimental.testOptions.managedDevices.maxConcurrentDevices=1
           -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=180
