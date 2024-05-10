@@ -1,6 +1,6 @@
 package com.ebsoftware.nero.core.converter.stocks.hl.csv
 
-import com.ebsoftware.nero.core.model.StockPosition
+import com.ebsoftware.nero.core.model.SecurityMovement
 import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -24,27 +24,27 @@ class HLCSVConverterTest {
                 "04/04/2024,Corp.A,E 01251223,0.00,0.00,-286.76,\n" +
                 "14/01/2020,Bought,B533982422,13968.87,3.00,435.21,"
         val converter = HLCSVConverter()
-        val stockPositions = converter.convert(testStream.byteInputStream())
+        val movements = converter.convert(testStream.byteInputStream())
         assertEquals(
             expected = listOf(
-                StockPosition.EMPTY.copy(
+                SecurityMovement.EMPTY.copy(
                     date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
                         .parse("04/04/2024")!!,
                     cost = 0.00,
                     quantity = 0,
-                ),StockPosition.EMPTY.copy(
+                ),SecurityMovement.EMPTY.copy(
                     date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
                         .parse("04/04/2024")!!,
                     cost = -286.76,
                     quantity = 0,
-                ),StockPosition.EMPTY.copy(
+                ),SecurityMovement.EMPTY.copy(
                     date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
                         .parse("14/01/2020")!!,
                     cost = 435.21,
                     quantity = 3,
                 ),
             ),
-            actual = stockPositions
+            actual = movements
         )
     }
 }
