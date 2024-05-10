@@ -21,6 +21,7 @@ mockitoKotlin = "4.1.0"
 navigationCommonKtx = "2.7.7"
 navigationRuntimeKtx = "2.7.7"
 okhttp = "4.12.0"
+opencsv = "4.6"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 room = "2.6.1"
@@ -56,6 +57,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+opencsv = { module = "com.opencsv:opencsv", version.ref = "opencsv" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }

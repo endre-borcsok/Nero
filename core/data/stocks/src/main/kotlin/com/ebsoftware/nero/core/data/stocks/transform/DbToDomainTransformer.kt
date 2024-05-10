@@ -15,15 +15,15 @@ internal fun List<StockPosition>.transform() =
 internal fun PositionEntity.transform() =
     StockPosition(
         ticker = ticker,
-        count = count,
-        price = price,
+        quantity = count,
+        cost = price,
         date = Date(dateUtcMs)
     )
 
 internal fun StockPosition.transform() =
     PositionEntity(
         ticker = ticker,
-        count = count,
-        price = price,
+        count = quantity,
+        price = cost,
         dateUtcMs = date.time
     )

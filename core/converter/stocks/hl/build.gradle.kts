@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.nero.android.library)
+    alias(libs.plugins.nero.android.hilt)
 }
 
 android {
@@ -7,5 +8,6 @@ android {
 }
 
 dependencies {
-
+    implementation(projects.core.model.stocks)
+    implementation(libs.opencsv)
 }

@@ -4,5 +4,5 @@ plugins {
 }
 
 android {
-    namespace = "com.ebsoftware.nero.feature.home"
+    namespace = "com.ebsoftware.nero.feature.stocks"
 }

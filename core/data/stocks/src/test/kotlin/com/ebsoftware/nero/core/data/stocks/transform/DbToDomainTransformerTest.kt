@@ -14,8 +14,8 @@ class DbToDomainTransformerTest {
             expected = listOf(
                 StockPosition(
                     ticker = "ticker",
-                    count = 10,
-                    price = 2.0,
+                    quantity = 10,
+                    cost = 2.0,
                     date = Date(10L),
                 )
             ),
@@ -35,8 +35,8 @@ class DbToDomainTransformerTest {
         assertEquals(
             expected = StockPosition(
                 ticker = "ticker",
-                count = 10,
-                price = 2.0,
+                quantity = 10,
+                cost = 2.0,
                 date = Date(10L),
             ),
             actual = PositionEntity(
@@ -62,8 +62,8 @@ class DbToDomainTransformerTest {
             actual = listOf(
                 StockPosition(
                     ticker = "ticker",
-                    count = 10,
-                    price = 2.0,
+                    quantity = 10,
+                    cost = 2.0,
                     date = Date(10L),
                 )
             ).transform()
@@ -81,8 +81,8 @@ class DbToDomainTransformerTest {
             ),
             actual = StockPosition(
                 ticker = "ticker",
-                count = 10,
-                price = 2.0,
+                quantity = 10,
+                cost = 2.0,
                 date = Date(10L),
             ).transform()
         )

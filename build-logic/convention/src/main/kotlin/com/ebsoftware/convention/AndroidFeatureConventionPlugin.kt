@@ -4,6 +4,7 @@ import com.android.build.gradle.LibraryExtension
 import com.ebsoftware.convention.common.configureAndroidTests
 import com.ebsoftware.convention.common.configureGradleManagedDevices
 import com.ebsoftware.convention.common.configureJvmTests
+import com.ebsoftware.convention.common.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -20,6 +21,12 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 configureJvmTests(this)
                 configureAndroidTests(this)
                 configureGradleManagedDevices(this)
+            }
+            dependencies {
+                add("implementation", libs.findLibrary("androidx.core.ktx").get())
+                add("implementation", libs.findLibrary("androidx.navigation.common.ktx").get())
+                add("implementation", libs.findLibrary("androidx.navigation.compose").get())
+                add("implementation", libs.findLibrary("androidx.navigation.runtime.ktx").get())
             }
         }
     }

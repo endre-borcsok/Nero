@@ -4,15 +4,15 @@ import java.util.Date
 
 data class StockPosition(
     val ticker: String,
-    val count: Int,
-    val price: Double,
+    val quantity: Int,
+    val cost: Double,
     val date: Date,
 ) {
     companion object {
         val EMPTY = StockPosition(
             ticker = String(),
-            count = Int.MAX_VALUE,
-            price = Double.MAX_VALUE,
+            quantity = Int.MAX_VALUE,
+            cost = Double.MAX_VALUE,
             date = Date(),
         )
     }
