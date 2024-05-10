@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface StockPositionDao {
 
-    @Query("SELECT * FROM positionentity")
+    @Query("SELECT * FROM securitymovemententity")
     fun getAll(): Flow<List<SecurityMovementEntity>>
 
-    @Query("SELECT * FROM positionentity WHERE ticker IN (:ticker)")
+    @Query("SELECT * FROM securitymovemententity WHERE ticker IN (:ticker)")
     fun getAll(ticker: String): Flow<List<SecurityMovementEntity>>
 
     @Insert
