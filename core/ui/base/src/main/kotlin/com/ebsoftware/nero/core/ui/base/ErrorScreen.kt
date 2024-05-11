@@ -14,7 +14,7 @@ fun ErrorScreen(
     modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),

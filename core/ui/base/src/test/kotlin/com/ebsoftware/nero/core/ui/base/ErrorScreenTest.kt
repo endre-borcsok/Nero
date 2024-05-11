@@ -10,13 +10,13 @@ import org.junit.runner.RunWith
 
 @RunWith(TestParameterInjector::class)
 class ErrorScreenTest(
-    @TestParameter config: ScreenshotDeviceConfig
+    @TestParameter config: ScreenshotDeviceConfig,
 ) {
-
     @get:Rule
-    val screenshotDevice = paparazziScreenshotDevice(
-        config = config,
-    )
+    val screenshotDevice =
+        paparazziScreenshotDevice(
+            config = config,
+        )
 
     @Test
     fun testErrorScreen() {

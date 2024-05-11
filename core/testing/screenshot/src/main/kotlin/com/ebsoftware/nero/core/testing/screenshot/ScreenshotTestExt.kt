@@ -15,10 +15,12 @@ fun paparazziScreenshotDevice(
 
 private fun ScreenshotDeviceConfig.asPaparazziDeviceConfig() =
     when (this) {
-        ScreenshotDeviceConfig.PHONE_LIGHT -> DeviceConfig.PIXEL_6.copy(
-            nightMode = NightMode.NOTNIGHT
-        )
-        ScreenshotDeviceConfig.PHONE_DARK -> DeviceConfig.PIXEL_6.copy(
-            nightMode = NightMode.NIGHT
-        )
+        ScreenshotDeviceConfig.PHONE_LIGHT ->
+            DeviceConfig.PIXEL_6.copy(
+                nightMode = NightMode.NOTNIGHT,
+            )
+        ScreenshotDeviceConfig.PHONE_DARK ->
+            DeviceConfig.PIXEL_6.copy(
+                nightMode = NightMode.NIGHT,
+            )
     }
