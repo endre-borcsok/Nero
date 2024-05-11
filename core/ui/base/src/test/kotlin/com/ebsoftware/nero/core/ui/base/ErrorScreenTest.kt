@@ -1,13 +1,22 @@
 package com.ebsoftware.nero.core.ui.base
 
+import com.ebsoftware.nero.core.testing.screenshot.ScreenshotDeviceConfig
 import com.ebsoftware.nero.core.testing.screenshot.paparazziScreenshotDevice
+import com.google.testing.junit.testparameterinjector.TestParameter
+import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
-class ErrorScreenTest {
+@RunWith(TestParameterInjector::class)
+class ErrorScreenTest(
+    @TestParameter config: ScreenshotDeviceConfig
+) {
 
     @get:Rule
-    val screenshotDevice = paparazziScreenshotDevice()
+    val screenshotDevice = paparazziScreenshotDevice(
+        config = config,
+    )
 
     @Test
     fun testErrorScreen() {

@@ -7,5 +7,6 @@ android {
 }
 
 dependencies {
+    api(libs.test.parameter.injector)
     implementation(libs.paparazzi)
 }
