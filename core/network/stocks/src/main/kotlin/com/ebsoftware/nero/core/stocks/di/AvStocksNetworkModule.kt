@@ -12,12 +12,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object AvStocksNetworkModule {
-
     @Provides
     @Singleton
-    fun provideRetrofitStocksService(
-        factory: AvRetrofitStocksServiceFactory
-    ) = factory()
+    fun provideRetrofitStocksService(factory: AvRetrofitStocksServiceFactory) = factory()
 
     @Provides
     @Singleton
@@ -29,7 +26,8 @@ internal object AvStocksNetworkModule {
 
     @Provides
     @Singleton
-    fun providesNetworkJson(): Json = Json {
-        ignoreUnknownKeys = true
-    }
+    fun providesNetworkJson(): Json =
+        Json {
+            ignoreUnknownKeys = true
+        }
 }

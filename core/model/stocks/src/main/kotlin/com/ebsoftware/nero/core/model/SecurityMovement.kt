@@ -9,11 +9,12 @@ data class SecurityMovement(
     val date: Date,
 ) {
     companion object {
-        val EMPTY = SecurityMovement(
-            ticker = String(),
-            quantity = Int.MAX_VALUE,
-            cost = Double.MAX_VALUE,
-            date = Date(),
-        )
+        val EMPTY =
+            SecurityMovement(
+                ticker = String(),
+                quantity = Int.MAX_VALUE,
+                cost = Double.MAX_VALUE,
+                date = Date(),
+            )
     }
 }

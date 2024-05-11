@@ -1,17 +1,14 @@
 package com.ebsoftware.nero.ui
 
-import androidx.activity.ComponentActivity
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import org.junit.Rule
 import org.junit.Test
 
 class NeroAppTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -20,7 +17,7 @@ class NeroAppTest {
         composeTestRule.setContent {
             NeroApp(
                 appState = rememberNeroAppState(),
-                modifier = Modifier.testTag("appTag")
+                modifier = Modifier.testTag("appTag"),
             )
         }
         composeTestRule.onNodeWithTag("appTag")

@@ -17,9 +17,10 @@ internal object StockDatabaseModule {
     @Singleton
     fun providesStockPositionDatabase(
         @ApplicationContext context: Context,
-    ): StockDatabase = Room.databaseBuilder(
-        context,
-        StockDatabase::class.java,
-        "nero-stock-positions-database",
-    ).build()
+    ): StockDatabase =
+        Room.databaseBuilder(
+            context,
+            StockDatabase::class.java,
+            "nero-stock-positions-database",
+        ).build()
 }

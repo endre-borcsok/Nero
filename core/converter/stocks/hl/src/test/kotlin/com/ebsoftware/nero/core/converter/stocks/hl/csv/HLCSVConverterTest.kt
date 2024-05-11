@@ -7,11 +7,10 @@ import java.util.Locale
 import kotlin.test.assertEquals
 
 class HLCSVConverterTest {
-
     @Test
     fun `when CSV file converter is used then data is mapped correctly`() {
         val testStream =
-                "Security movements for:, Nice Company, Common Stock USD 0.01 (CDI) , , ,\n" +
+            "Security movements for:, Nice Company, Common Stock USD 0.01 (CDI) , , ,\n" +
                 "Client Name: Mr John Smith , , , , ,\n" +
                 "Client Number: 00000 , , , , ,\n" +
                 "\n" +
@@ -26,25 +25,31 @@ class HLCSVConverterTest {
         val converter = HLCSVConverter()
         val movements = converter.convert(testStream.byteInputStream())
         assertEquals(
-            expected = listOf(
-                SecurityMovement.EMPTY.copy(
-                    date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
-                        .parse("04/04/2024")!!,
-                    cost = 0.00,
-                    quantity = 0,
-                ),SecurityMovement.EMPTY.copy(
-                    date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
-                        .parse("04/04/2024")!!,
-                    cost = -286.76,
-                    quantity = 0,
-                ),SecurityMovement.EMPTY.copy(
-                    date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
-                        .parse("14/01/2020")!!,
-                    cost = 435.21,
-                    quantity = 3,
+            expected =
+                listOf(
+                    SecurityMovement.EMPTY.copy(
+                        date =
+                            SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
+                                .parse("04/04/2024")!!,
+                        cost = 0.00,
+                        quantity = 0,
+                    ),
+                    SecurityMovement.EMPTY.copy(
+                        date =
+                            SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
+                                .parse("04/04/2024")!!,
+                        cost = -286.76,
+                        quantity = 0,
+                    ),
+                    SecurityMovement.EMPTY.copy(
+                        date =
+                            SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
+                                .parse("14/01/2020")!!,
+                        cost = 435.21,
+                        quantity = 3,
+                    ),
                 ),
-            ),
-            actual = movements
+            actual = movements,
         )
     }
 }

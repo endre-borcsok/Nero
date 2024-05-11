@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class LocalStockRepository @Inject constructor(
-    private val stockPositionDao: StockPositionDao,
-) : StockRepository {
+class LocalStockRepository
+    @Inject
+    constructor(
+        private val stockPositionDao: StockPositionDao,
+    ) : StockRepository {
+        override fun getPositions(): Flow<List<SecurityMovement>> = stockPositionDao.getAll().map(List<SecurityMovementEntity>::transform)
 
-    override fun getPositions(): Flow<List<SecurityMovement>> =
-        stockPositionDao.getAll().map(List<SecurityMovementEntity>::transform)
-
-    override suspend fun addPositions(positions: List<SecurityMovement>) {
-        stockPositionDao.insert(*positions.map(SecurityMovement::transform).toTypedArray())
+        override suspend fun addPositions(positions: List<SecurityMovement>) {
+            stockPositionDao.insert(*positions.map(SecurityMovement::transform).toTypedArray())
+        }
     }
-}

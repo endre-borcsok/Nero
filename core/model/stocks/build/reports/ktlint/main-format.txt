@@ -1,0 +1,7 @@
+/Users/endre.borcsok/AndroidStudioProjects/Nero/core/model/stocks/src/main/kotlin/com/ebsoftware/nero/core/model/SecurityMovement.kt:1:1: Format fixed > [standard:indent] Unexpected indentation (8) (should be 12)
+/Users/endre.borcsok/AndroidStudioProjects/Nero/core/model/stocks/src/main/kotlin/com/ebsoftware/nero/core/model/SecurityMovement.kt:12:21: Format fixed > [standard:multiline-expression-wrapping] A multiline expression should start on a new line
+/Users/endre.borcsok/AndroidStudioProjects/Nero/core/model/stocks/src/main/kotlin/com/ebsoftware/nero/core/model/SecurityMovement.kt:13:13: Format fixed > [standard:indent] Unexpected indentation (12) (should be 16)
+/Users/endre.borcsok/AndroidStudioProjects/Nero/core/model/stocks/src/main/kotlin/com/ebsoftware/nero/core/model/SecurityMovement.kt:14:17: Format fixed > [standard:indent] Unexpected indentation (12) (should be 16)
+/Users/endre.borcsok/AndroidStudioProjects/Nero/core/model/stocks/src/main/kotlin/com/ebsoftware/nero/core/model/SecurityMovement.kt:15:21: Format fixed > [standard:indent] Unexpected indentation (12) (should be 16)
+/Users/endre.borcsok/AndroidStudioProjects/Nero/core/model/stocks/src/main/kotlin/com/ebsoftware/nero/core/model/SecurityMovement.kt:16:25: Format fixed > [standard:indent] Unexpected indentation (12) (should be 16)
+/Users/endre.borcsok/AndroidStudioProjects/Nero/core/model/stocks/src/main/kotlin/com/ebsoftware/nero/core/model/SecurityMovement.kt:19:1: Format fixed > [standard:final-newline] File must end with a newline (\n)

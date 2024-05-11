@@ -12,30 +12,31 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 internal interface AvRetrofitStocksService {
-
     @GET("/query")
     suspend fun getQuery(
         @Query("function") function: String,
         @Query("symbol") symbol: String,
-    ) : GlobalQuoteResponse
+    ): GlobalQuoteResponse
 }
 
 @Singleton
-internal class AvRetrofitStocksServiceFactory @Inject constructor(
-    private val okHttpClientBuilder: OkHttpClient.Builder,
-    private val baseUrl: AvBaseUrl,
-    private val apiKeyInterceptor: AvApiKeyInterceptor,
-    private val serializer: Json,
-) {
-    operator fun invoke(): AvRetrofitStocksService =
-        Retrofit.Builder()
-            .client(
-                okHttpClientBuilder
-                    .addInterceptor(apiKeyInterceptor)
-                    .build()
-            )
-            .baseUrl(baseUrl.value)
-            .addConverterFactory(serializer.asConverterFactory("application/json".toMediaType()))
-            .build()
-            .create(AvRetrofitStocksService::class.java)
-}
+internal class AvRetrofitStocksServiceFactory
+    @Inject
+    constructor(
+        private val okHttpClientBuilder: OkHttpClient.Builder,
+        private val baseUrl: AvBaseUrl,
+        private val apiKeyInterceptor: AvApiKeyInterceptor,
+        private val serializer: Json,
+    ) {
+        operator fun invoke(): AvRetrofitStocksService =
+            Retrofit.Builder()
+                .client(
+                    okHttpClientBuilder
+                        .addInterceptor(apiKeyInterceptor)
+                        .build(),
+                )
+                .baseUrl(baseUrl.value)
+                .addConverterFactory(serializer.asConverterFactory("application/json".toMediaType()))
+                .build()
+                .create(AvRetrofitStocksService::class.java)
+    }

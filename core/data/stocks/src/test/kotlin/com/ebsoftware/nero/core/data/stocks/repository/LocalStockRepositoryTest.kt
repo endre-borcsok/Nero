@@ -15,25 +15,26 @@ import org.mockito.kotlin.whenever
 
 @RunWith(MockitoJUnitRunner::class)
 class LocalStockRepositoryTest {
-
     @Mock
     private lateinit var stockPositionDao: StockPositionDao
 
     @Test
-    fun `when stream of positions requested then it is taken from the dao`() = runTest {
-        whenever(stockPositionDao.getAll()) doReturn emptyFlow()
-        LocalStockRepository(
-            stockPositionDao = stockPositionDao,
-        ).getPositions()
-        verify(stockPositionDao).getAll()
-    }
+    fun `when stream of positions requested then it is taken from the dao`() =
+        runTest {
+            whenever(stockPositionDao.getAll()) doReturn emptyFlow()
+            LocalStockRepository(
+                stockPositionDao = stockPositionDao,
+            ).getPositions()
+            verify(stockPositionDao).getAll()
+        }
 
     @Test
-    fun `when stream of positions are added then they are added with the dao`() = runTest {
-        val positions = listOf(SecurityMovement.EMPTY, SecurityMovement.EMPTY)
-        LocalStockRepository(
-            stockPositionDao = stockPositionDao,
-        ).addPositions(positions)
-        verify(stockPositionDao).insert(*positions.map(SecurityMovement::transform).toTypedArray())
-    }
+    fun `when stream of positions are added then they are added with the dao`() =
+        runTest {
+            val positions = listOf(SecurityMovement.EMPTY, SecurityMovement.EMPTY)
+            LocalStockRepository(
+                stockPositionDao = stockPositionDao,
+            ).addPositions(positions)
+            verify(stockPositionDao).insert(*positions.map(SecurityMovement::transform).toTypedArray())
+        }
 }

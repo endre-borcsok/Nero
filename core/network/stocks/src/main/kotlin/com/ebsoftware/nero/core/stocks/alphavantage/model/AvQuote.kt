@@ -10,10 +10,11 @@ internal data class AvQuote(
     @SerialName("05. price") val price: String,
 ) {
     companion object {
-        val EMPTY = AvQuote(
-            ticker = "ticker",
-            price = "1.0",
-        )
+        val EMPTY =
+            AvQuote(
+                ticker = "ticker",
+                price = "1.0",
+            )
     }
 }
 

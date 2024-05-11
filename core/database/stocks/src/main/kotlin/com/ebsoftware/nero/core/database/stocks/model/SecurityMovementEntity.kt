@@ -10,11 +10,12 @@ data class SecurityMovementEntity(
     val price: Double,
 ) {
     companion object {
-        val EMPTY = SecurityMovementEntity(
-            ticker = String(),
-            quantity = Int.MAX_VALUE,
-            price = Double.MAX_VALUE,
-            dateUtcMs = Long.MAX_VALUE,
-        )
+        val EMPTY =
+            SecurityMovementEntity(
+                ticker = String(),
+                quantity = Int.MAX_VALUE,
+                price = Double.MAX_VALUE,
+                dateUtcMs = Long.MAX_VALUE,
+            )
     }
 }

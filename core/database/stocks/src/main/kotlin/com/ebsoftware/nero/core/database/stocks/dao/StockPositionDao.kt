@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StockPositionDao {
-
     @Query("SELECT * FROM securitymovemententity")
     fun getAll(): Flow<List<SecurityMovementEntity>>
 

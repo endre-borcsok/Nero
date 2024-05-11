@@ -5,19 +5,17 @@ import com.ebsoftware.nero.core.model.SecurityMovement
 import java.util.Date
 
 @JvmName("positionEntityList")
-internal fun List<SecurityMovementEntity>.transform() =
-    map(SecurityMovementEntity::transform)
+internal fun List<SecurityMovementEntity>.transform() = map(SecurityMovementEntity::transform)
 
 @JvmName("stockPositionList")
-internal fun List<SecurityMovement>.transform() =
-    map(SecurityMovement::transform)
+internal fun List<SecurityMovement>.transform() = map(SecurityMovement::transform)
 
 internal fun SecurityMovementEntity.transform() =
     SecurityMovement(
         ticker = ticker,
         quantity = quantity,
         cost = price,
-        date = Date(dateUtcMs)
+        date = Date(dateUtcMs),
     )
 
 internal fun SecurityMovement.transform() =
@@ -25,5 +23,5 @@ internal fun SecurityMovement.transform() =
         ticker = ticker,
         quantity = quantity,
         price = cost,
-        dateUtcMs = date.time
+        dateUtcMs = date.time,
     )

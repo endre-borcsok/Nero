@@ -14,18 +14,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface StocksNetworkModule {
-
     @Binds
     @Singleton
     fun bindStocksApi(impl: AvRetrofitStocksApi): StocksApi
 
     companion object {
-
         @Provides
         @Singleton
-        fun provideRetrofitStocksService(
-            factory: AvRetrofitStocksServiceFactory
-        ) = factory()
+        fun provideRetrofitStocksService(factory: AvRetrofitStocksServiceFactory) = factory()
 
         @Provides
         @Singleton

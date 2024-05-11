@@ -11,7 +11,7 @@ import com.ebsoftware.nero.ui.NeroAppState
 internal fun NeroNavHost(
     appState: NeroAppState,
     modifier: Modifier = Modifier,
-    startDestination: String = HOME_ROUTE
+    startDestination: String = HOME_ROUTE,
 ) {
     NavHost(
         navController = appState.navController,
