@@ -4,6 +4,7 @@ import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
 import com.ebsoftware.convention.common.configureAndroidTests
 import com.ebsoftware.convention.common.configureGradleManagedDevices
+import com.ebsoftware.convention.common.configureScreenshotTests
 import com.ebsoftware.convention.common.configureJvmTests
 import com.ebsoftware.convention.common.configureKotlinAndroid
 import com.ebsoftware.convention.common.disableUnnecessaryAndroidTests
@@ -26,6 +27,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
                 configureJvmTests(this)
                 configureAndroidTests(this)
+                configureScreenshotTests(this)
                 configureGradleManagedDevices(this)
             }
             extensions.configure<LibraryAndroidComponentsExtension> {
