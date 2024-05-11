@@ -37,6 +37,9 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Run lint
+        run: ./gradlew lintKotlin
+
       - name: Run unit tests
         run: ./gradlew test
 
