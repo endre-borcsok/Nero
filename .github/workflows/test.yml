@@ -37,6 +37,9 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Download images
+        run: sdkmanager --channel=0 "system-images;android-30;aosp_atd;x86_64"
+
       - name: Run lint
         run: ./gradlew lintKotlin
 
