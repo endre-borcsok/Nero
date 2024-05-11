@@ -3,16 +3,16 @@ package com.ebsoftware.nero.core.database.stocks.model
 import androidx.room.Entity
 
 @Entity(primaryKeys = ["ticker", "dateUtcMs"])
-data class PositionEntity(
+data class SecurityMovementEntity(
     val ticker: String,
     val dateUtcMs: Long,
-    val count: Int,
+    val quantity: Int,
     val price: Double,
 ) {
     companion object {
-        val EMPTY = PositionEntity(
+        val EMPTY = SecurityMovementEntity(
             ticker = String(),
-            count = Int.MAX_VALUE,
+            quantity = Int.MAX_VALUE,
             price = Double.MAX_VALUE,
             dateUtcMs = Long.MAX_VALUE,
         )

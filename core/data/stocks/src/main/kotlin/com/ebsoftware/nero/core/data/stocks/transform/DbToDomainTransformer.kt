@@ -1,29 +1,29 @@
 package com.ebsoftware.nero.core.data.stocks.transform
 
-import com.ebsoftware.nero.core.database.stocks.model.PositionEntity
-import com.ebsoftware.nero.core.model.StockPosition
+import com.ebsoftware.nero.core.database.stocks.model.SecurityMovementEntity
+import com.ebsoftware.nero.core.model.SecurityMovement
 import java.util.Date
 
 @JvmName("positionEntityList")
-internal fun List<PositionEntity>.transform() =
-    map(PositionEntity::transform)
+internal fun List<SecurityMovementEntity>.transform() =
+    map(SecurityMovementEntity::transform)
 
 @JvmName("stockPositionList")
-internal fun List<StockPosition>.transform() =
-    map(StockPosition::transform)
+internal fun List<SecurityMovement>.transform() =
+    map(SecurityMovement::transform)
 
-internal fun PositionEntity.transform() =
-    StockPosition(
+internal fun SecurityMovementEntity.transform() =
+    SecurityMovement(
         ticker = ticker,
-        quantity = count,
+        quantity = quantity,
         cost = price,
         date = Date(dateUtcMs)
     )
 
-internal fun StockPosition.transform() =
-    PositionEntity(
+internal fun SecurityMovement.transform() =
+    SecurityMovementEntity(
         ticker = ticker,
-        count = quantity,
+        quantity = quantity,
         price = cost,
         dateUtcMs = date.time
     )

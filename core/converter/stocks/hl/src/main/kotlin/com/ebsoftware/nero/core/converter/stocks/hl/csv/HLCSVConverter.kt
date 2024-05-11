@@ -1,8 +1,7 @@
 package com.ebsoftware.nero.core.converter.stocks.hl.csv
 
 import com.ebsoftware.nero.core.converter.stocks.hl.HLConverter
-import com.ebsoftware.nero.core.model.StockPosition
-import com.opencsv.CSVParserBuilder
+import com.ebsoftware.nero.core.model.SecurityMovement
 import com.opencsv.CSVReaderBuilder
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -14,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class HLCSVConverter @Inject constructor() : HLConverter {
 
-    override fun convert(inputStream: InputStream): List<StockPosition> {
+    override fun convert(inputStream: InputStream): List<SecurityMovement> {
         val reader = getReader(inputStream)
         val rows = reader.readAll()
         val headers = rows.findContains(DATE_COL)
@@ -24,7 +23,7 @@ class HLCSVConverter @Inject constructor() : HLConverter {
         val costCol = headers.indexOfContains(COST_COL)
         val positions = rows.drop(rows.indexOf(headers) + 2)
         return positions.map {
-            StockPosition.EMPTY.copy(
+            SecurityMovement.EMPTY.copy(
                 date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH).parse(it[dateCol])!!,
                 cost = it[costCol].toDouble(),
                 quantity = it[quantityCol].toDouble().toInt()
