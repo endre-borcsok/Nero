@@ -24,7 +24,7 @@ class LocalStockRepositoryTest {
             whenever(stockPositionDao.getAll()) doReturn emptyFlow()
             LocalStockRepository(
                 stockPositionDao = stockPositionDao,
-            ).getPositions()
+            ).getSecurityMovements()
             verify(stockPositionDao).getAll()
         }
 
