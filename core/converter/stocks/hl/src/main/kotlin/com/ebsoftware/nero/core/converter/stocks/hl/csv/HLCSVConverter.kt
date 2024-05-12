@@ -11,10 +11,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HLCSVConverter
-@Inject
-constructor() : HLConverter {
-    override fun convert(inputStream: InputStream): List<SecurityMovement> {
+class HLCSVConverter @Inject constructor() : HLConverter {
+
+    override fun convert(
+        inputStream: InputStream,
+    ): List<SecurityMovement> {
         val reader = getReader(inputStream)
         val rows = reader.readAll()
         val headers =
@@ -33,11 +34,17 @@ constructor() : HLConverter {
         }
     }
 
-    private fun List<Array<String>>.findContains(text: String) = find { it.contains(text) }
+    private fun List<Array<String>>.findContains(
+        text: String,
+    ) = find { it.contains(text) }
 
-    private fun Array<String>.indexOfContains(text: String) = indexOf(find { it.contains(text) })
+    private fun Array<String>.indexOfContains(
+        text: String,
+    ) = indexOf(find { it.contains(text) })
 
-    private fun getReader(inputStream: InputStream) = CSVReaderBuilder(InputStreamReader(inputStream))
+    private fun getReader(
+        inputStream: InputStream,
+    ) = CSVReaderBuilder(InputStreamReader(inputStream))
         .build()
 
     companion object {

@@ -8,7 +8,9 @@ import com.ebsoftware.nero.feature.home.HomeRoute
 
 const val HOME_ROUTE = "home_route/"
 
-fun NavController.navigateToHome(navOptions: NavOptions) = navigate(HOME_ROUTE, navOptions)
+fun NavController.navigateToHome(
+    navOptions: NavOptions,
+) = navigate(HOME_ROUTE, navOptions)
 
 fun NavGraphBuilder.homeScreen() {
     composable(

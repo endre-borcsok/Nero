@@ -6,7 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-internal fun rememberNeroAppState(navController: NavHostController = rememberNavController()) = remember {
+internal fun rememberNeroAppState(
+    navController: NavHostController = rememberNavController(),
+) = remember {
     NeroAppState(
         navController = navController,
     )

@@ -1,17 +1,36 @@
 package com.ebsoftware.nero.feature.stocks
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ebsoftware.nero.core.ui.base.ErrorScreen
+import com.ebsoftware.nero.core.ui.base.LoadingScreen
 
 @Composable
-internal fun StocksRoute(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color.Gray),
+internal fun StocksRoute(
+    modifier: Modifier = Modifier,
+    viewModel: StocksViewModel = hiltViewModel(),
+) {
+    Screen(
+        modifier = modifier,
+        uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
     )
+}
+
+@Composable
+internal fun Screen(
+    uiState: StocksUiState,
+    modifier: Modifier = Modifier,
+) {
+    when (uiState) {
+        is StocksUiState.Loading -> LoadingScreen(
+            modifier = modifier,
+        )
+        is StocksUiState.Error -> ErrorScreen(
+            modifier = modifier,
+            errorText = uiState.throwable.message.orEmpty(),
+        )
+        is StocksUiState.Success -> Unit
+    }
 }

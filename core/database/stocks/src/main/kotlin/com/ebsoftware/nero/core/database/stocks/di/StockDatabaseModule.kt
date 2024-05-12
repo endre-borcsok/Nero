@@ -13,9 +13,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object StockDatabaseModule {
+
     @Provides
     @Singleton
-    fun providesStockPositionDatabase(@ApplicationContext context: Context): StockDatabase = Room.databaseBuilder(
+    fun providesStockPositionDatabase(
+        @ApplicationContext context: Context,
+    ): StockDatabase = Room.databaseBuilder(
         context,
         StockDatabase::class.java,
         "nero-stock-positions-database",

@@ -16,7 +16,9 @@ class LocalStockRepository @Inject constructor(
     override fun getSecurityMovements(): Flow<List<SecurityMovement>> =
         stockPositionDao.getAll().map(List<SecurityMovementEntity>::transform)
 
-    override suspend fun addPositions(positions: List<SecurityMovement>) {
+    override suspend fun addPositions(
+        positions: List<SecurityMovement>,
+    ) {
         stockPositionDao.insert(*positions.map(SecurityMovement::transform).toTypedArray())
     }
 }

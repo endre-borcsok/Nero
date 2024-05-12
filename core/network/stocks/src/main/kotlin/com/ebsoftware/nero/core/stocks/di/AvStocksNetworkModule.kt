@@ -12,9 +12,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object AvStocksNetworkModule {
+
     @Provides
     @Singleton
-    fun provideRetrofitStocksService(factory: AvRetrofitStocksServiceFactory) = factory()
+    fun provideRetrofitStocksService(
+        factory: AvRetrofitStocksServiceFactory,
+    ) = factory()
 
     @Provides
     @Singleton

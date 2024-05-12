@@ -29,7 +29,7 @@ internal class StocksViewModel @Inject constructor(
             )
 }
 
-internal interface StocksUiState {
+internal sealed interface StocksUiState {
     data object Loading : StocksUiState
     data class Error(val throwable: Throwable) : StocksUiState
     data class Success(val securityMovements: List<SecurityMovement>) : StocksUiState

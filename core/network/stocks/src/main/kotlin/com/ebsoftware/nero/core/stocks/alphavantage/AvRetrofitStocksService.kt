@@ -12,14 +12,16 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 internal interface AvRetrofitStocksService {
+
     @GET("/query")
-    suspend fun getQuery(@Query("function") function: String, @Query("symbol") symbol: String): GlobalQuoteResponse
+    suspend fun getQuery(
+        @Query("function") function: String,
+        @Query("symbol") symbol: String,
+    ): GlobalQuoteResponse
 }
 
 @Singleton
-internal class AvRetrofitStocksServiceFactory
-@Inject
-constructor(
+internal class AvRetrofitStocksServiceFactory @Inject constructor(
     private val okHttpClientBuilder: OkHttpClient.Builder,
     private val baseUrl: AvBaseUrl,
     private val apiKeyInterceptor: AvApiKeyInterceptor,

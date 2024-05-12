@@ -9,7 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun ErrorScreen(errorText: String, modifier: Modifier = Modifier) {
+fun ErrorScreen(
+    errorText: String,
+    modifier: Modifier = Modifier,
+) {
     Box(
         modifier = modifier.fillMaxSize(),
     ) {

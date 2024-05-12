@@ -8,7 +8,9 @@ import com.ebsoftware.nero.feature.stocks.StocksRoute
 
 const val STOCKS_ROUTE = "stocks_route/"
 
-fun NavController.navigateToStocks(navOptions: NavOptions) = navigate(STOCKS_ROUTE, navOptions)
+fun NavController.navigateToStocks(
+    navOptions: NavOptions,
+) = navigate(STOCKS_ROUTE, navOptions)
 
 fun NavGraphBuilder.stocksScreen() {
     composable(
