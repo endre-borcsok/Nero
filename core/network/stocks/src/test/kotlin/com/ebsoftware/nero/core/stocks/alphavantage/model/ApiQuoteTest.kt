@@ -9,15 +9,15 @@ class ApiQuoteTest {
     fun `when transformed then parameter mapping is correct`() {
         assertEquals(
             expected =
-                ApiQuote(
-                    ticker = "AAPL",
-                    price = 2.5,
-                ),
+            ApiQuote(
+                ticker = "AAPL",
+                price = 2.5,
+            ),
             actual =
-                AvQuote(
-                    ticker = "AAPL",
-                    price = "2.5",
-                ).transform(),
+            AvQuote(
+                ticker = "AAPL",
+                price = "2.5",
+            ).transform(),
         )
     }
 }

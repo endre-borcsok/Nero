@@ -6,12 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-internal fun rememberNeroAppState(navController: NavHostController = rememberNavController()) =
-    remember {
-        NeroAppState(
-            navController = navController,
-        )
-    }
+internal fun rememberNeroAppState(navController: NavHostController = rememberNavController()) = remember {
+    NeroAppState(
+        navController = navController,
+    )
+}
 
 internal class NeroAppState(
     val navController: NavHostController,

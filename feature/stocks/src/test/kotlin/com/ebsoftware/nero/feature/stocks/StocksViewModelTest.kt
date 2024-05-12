@@ -19,16 +19,16 @@ import kotlin.test.assertTrue
 
 @RunWith(MockitoJUnitRunner::class)
 class StocksViewModelTest {
+
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
     @Mock
     private lateinit var stockRepository: StockRepository
 
-    private fun initViewModel() =
-        StocksViewModel(
-            stockRepository = stockRepository,
-        )
+    private fun initViewModel() = StocksViewModel(
+        stockRepository = stockRepository,
+    )
 
     @Test
     fun `when initialised the initial ui state is Loading`() {
@@ -36,24 +36,22 @@ class StocksViewModelTest {
     }
 
     @Test
-    fun `when security movements are collected successfully then ui state is Success`() =
-        runTest {
-            val movements = listOf(SecurityMovement.EMPTY)
-            whenever(stockRepository.getSecurityMovements()) doReturn flowOf(movements)
-            assertEquals(
-                expected = StocksUiState.Success(movements),
-                actual = initViewModel().uiState.first(),
-            )
-        }
+    fun `when security movements are collected successfully then ui state is Success`() = runTest {
+        val movements = listOf(SecurityMovement.EMPTY)
+        whenever(stockRepository.getSecurityMovements()) doReturn flowOf(movements)
+        assertEquals(
+            expected = StocksUiState.Success(movements),
+            actual = initViewModel().uiState.first(),
+        )
+    }
 
     @Test
-    fun `when security movements are collected unsuccessfully then ui state is Error`() =
-        runTest {
-            val exception = Exception("Test exception")
-            whenever(stockRepository.getSecurityMovements()) doReturn flow { throw exception }
-            assertEquals(
-                expected = StocksUiState.Error(exception),
-                actual = initViewModel().uiState.first(),
-            )
-        }
+    fun `when security movements are collected unsuccessfully then ui state is Error`() = runTest {
+        val exception = Exception("Test exception")
+        whenever(stockRepository.getSecurityMovements()) doReturn flow { throw exception }
+        assertEquals(
+            expected = StocksUiState.Error(exception),
+            actual = initViewModel().uiState.first(),
+        )
+    }
 }

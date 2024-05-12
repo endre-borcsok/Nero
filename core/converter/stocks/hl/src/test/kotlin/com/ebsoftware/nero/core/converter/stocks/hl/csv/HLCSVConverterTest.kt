@@ -26,29 +26,29 @@ class HLCSVConverterTest {
         val movements = converter.convert(testStream.byteInputStream())
         assertEquals(
             expected =
-                listOf(
-                    SecurityMovement.EMPTY.copy(
-                        date =
-                            SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
-                                .parse("04/04/2024")!!,
-                        cost = 0.00,
-                        quantity = 0,
-                    ),
-                    SecurityMovement.EMPTY.copy(
-                        date =
-                            SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
-                                .parse("04/04/2024")!!,
-                        cost = -286.76,
-                        quantity = 0,
-                    ),
-                    SecurityMovement.EMPTY.copy(
-                        date =
-                            SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
-                                .parse("14/01/2020")!!,
-                        cost = 435.21,
-                        quantity = 3,
-                    ),
+            listOf(
+                SecurityMovement.EMPTY.copy(
+                    date =
+                    SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
+                        .parse("04/04/2024")!!,
+                    cost = 0.00,
+                    quantity = 0,
                 ),
+                SecurityMovement.EMPTY.copy(
+                    date =
+                    SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
+                        .parse("04/04/2024")!!,
+                    cost = -286.76,
+                    quantity = 0,
+                ),
+                SecurityMovement.EMPTY.copy(
+                    date =
+                    SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH)
+                        .parse("14/01/2020")!!,
+                    cost = 435.21,
+                    quantity = 3,
+                ),
+            ),
             actual = movements,
         )
     }

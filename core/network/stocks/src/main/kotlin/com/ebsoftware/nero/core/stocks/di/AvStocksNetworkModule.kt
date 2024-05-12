@@ -26,8 +26,7 @@ internal object AvStocksNetworkModule {
 
     @Provides
     @Singleton
-    fun providesNetworkJson(): Json =
-        Json {
-            ignoreUnknownKeys = true
-        }
+    fun providesNetworkJson(): Json = Json {
+        ignoreUnknownKeys = true
+    }
 }

@@ -10,9 +10,8 @@ import androidx.compose.ui.graphics.Color
 @Composable
 internal fun StocksRoute(modifier: Modifier = Modifier) {
     Box(
-        modifier =
-            modifier
-                .fillMaxSize()
-                .background(Color.Gray),
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.Gray),
     )
 }

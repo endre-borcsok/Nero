@@ -14,24 +14,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class StocksViewModel @Inject constructor(
-    stockRepository: StockRepository
+    stockRepository: StockRepository,
 ) : ViewModel() {
-        val uiState: StateFlow<StocksUiState> =
-            stockRepository
-                .getSecurityMovements()
-                .map<List<SecurityMovement>, StocksUiState> { StocksUiState.Success(it) }
-                .catch { emit(StocksUiState.Error(it)) }
-                .stateIn(
-                    scope = viewModelScope,
-                    started = SharingStarted.Lazily,
-                    initialValue = StocksUiState.Loading,
-                )
-    }
+
+    val uiState: StateFlow<StocksUiState> =
+        stockRepository
+            .getSecurityMovements()
+            .map<List<SecurityMovement>, StocksUiState> { StocksUiState.Success(it) }
+            .catch { emit(StocksUiState.Error(it)) }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.Lazily,
+                initialValue = StocksUiState.Loading,
+            )
+}
 
 internal interface StocksUiState {
     data object Loading : StocksUiState
-
     data class Error(val throwable: Throwable) : StocksUiState
-
     data class Success(val securityMovements: List<SecurityMovement>) : StocksUiState
 }

@@ -11,8 +11,8 @@ import androidx.compose.ui.graphics.Color
 internal fun HomeRoute(modifier: Modifier = Modifier) {
     Box(
         modifier =
-            modifier
-                .fillMaxSize()
-                .background(Color.Gray),
+        modifier
+            .fillMaxSize()
+            .background(Color.Gray),
     )
 }

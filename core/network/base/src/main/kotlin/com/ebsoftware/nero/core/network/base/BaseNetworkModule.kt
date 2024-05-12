@@ -13,14 +13,13 @@ import javax.inject.Singleton
 internal object BaseNetworkModule {
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient.Builder =
-        OkHttpClient.Builder()
-            .addInterceptor(
-                HttpLoggingInterceptor()
-                    .apply {
-                        if (true) {
-                            setLevel(HttpLoggingInterceptor.Level.BODY)
-                        }
-                    },
-            )
+    fun provideOkHttpClient(): OkHttpClient.Builder = OkHttpClient.Builder()
+        .addInterceptor(
+            HttpLoggingInterceptor()
+                .apply {
+                    if (true) {
+                        setLevel(HttpLoggingInterceptor.Level.BODY)
+                    }
+                },
+        )
 }

@@ -32,64 +32,61 @@ class StockPositionDaoTest {
     fun closeDb() = db.close()
 
     @Test
-    fun testInsertedEntriesAreListed() =
-        runTest {
-            stockPositionDao.insert(
+    fun testInsertedEntriesAreListed() = runTest {
+        stockPositionDao.insert(
+            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
+            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
+        )
+        assertEquals(
+            expected =
+            listOf(
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
-            )
-            assertEquals(
-                expected =
-                    listOf(
-                        SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-                        SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
-                    ),
-                actual = stockPositionDao.getAll().first(),
-            )
-        }
+            ),
+            actual = stockPositionDao.getAll().first(),
+        )
+    }
 
     @Test
-    fun testInsertedEntriesAreListedByTicker() =
-        runTest {
-            stockPositionDao.insert(
+    fun testInsertedEntriesAreListedByTicker() = runTest {
+        stockPositionDao.insert(
+            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
+            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
+            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
+            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L),
+        )
+        assertEquals(
+            expected =
+            listOf(
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
+            ),
+            actual = stockPositionDao.getAll("AAPL").first(),
+        )
+        assertEquals(
+            expected =
+            listOf(
                 SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
                 SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L),
-            )
-            assertEquals(
-                expected =
-                    listOf(
-                        SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-                        SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
-                    ),
-                actual = stockPositionDao.getAll("AAPL").first(),
-            )
-            assertEquals(
-                expected =
-                    listOf(
-                        SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
-                        SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L),
-                    ),
-                actual = stockPositionDao.getAll("IBM").first(),
-            )
-        }
+            ),
+            actual = stockPositionDao.getAll("IBM").first(),
+        )
+    }
 
     @Test
-    fun testInsertedEntriesCanBeDeleted() =
-        runTest {
-            stockPositionDao.insert(
+    fun testInsertedEntriesCanBeDeleted() = runTest {
+        stockPositionDao.insert(
+            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
+        )
+        stockPositionDao.delete(
+            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
+        )
+        assertEquals(
+            expected =
+            listOf(
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-            )
-            stockPositionDao.delete(
-                SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
-            )
-            assertEquals(
-                expected =
-                    listOf(
-                        SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-                    ),
-                actual = stockPositionDao.getAll().first(),
-            )
-        }
+            ),
+            actual = stockPositionDao.getAll().first(),
+        )
+    }
 }

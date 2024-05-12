@@ -18,8 +18,7 @@ internal data class AvQuote(
     }
 }
 
-internal fun AvQuote.transform() =
-    ApiQuote(
-        ticker = ticker,
-        price = price.toDouble(),
-    )
+internal fun AvQuote.transform() = ApiQuote(
+    ticker = ticker,
+    price = price.toDouble(),
+)

@@ -10,18 +10,16 @@ internal fun List<SecurityMovementEntity>.transform() = map(SecurityMovementEnti
 @JvmName("stockPositionList")
 internal fun List<SecurityMovement>.transform() = map(SecurityMovement::transform)
 
-internal fun SecurityMovementEntity.transform() =
-    SecurityMovement(
-        ticker = ticker,
-        quantity = quantity,
-        cost = price,
-        date = Date(dateUtcMs),
-    )
+internal fun SecurityMovementEntity.transform() = SecurityMovement(
+    ticker = ticker,
+    quantity = quantity,
+    cost = price,
+    date = Date(dateUtcMs),
+)
 
-internal fun SecurityMovement.transform() =
-    SecurityMovementEntity(
-        ticker = ticker,
-        quantity = quantity,
-        price = cost,
-        dateUtcMs = date.time,
-    )
+internal fun SecurityMovement.transform() = SecurityMovementEntity(
+    ticker = ticker,
+    quantity = quantity,
+    price = cost,
+    dateUtcMs = date.time,
+)
