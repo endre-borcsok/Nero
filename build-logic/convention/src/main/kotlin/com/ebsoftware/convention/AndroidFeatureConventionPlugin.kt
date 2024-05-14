@@ -1,6 +1,7 @@
 package com.ebsoftware.convention
 
 import com.android.build.gradle.LibraryExtension
+import com.ebsoftware.convention.common.configureAndroidCompose
 import com.ebsoftware.convention.common.configureAndroidTests
 import com.ebsoftware.convention.common.configureGradleManagedDevices
 import com.ebsoftware.convention.common.configureScreenshotTests
@@ -22,6 +23,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 testOptions.animationsDisabled = true
                 configureJvmTests(this)
                 configureAndroidTests(this)
+                configureAndroidCompose(this)
                 configureScreenshotTests(this)
                 configureGradleManagedDevices(this)
             }
