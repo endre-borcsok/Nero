@@ -6,6 +6,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import com.ebsoftware.nero.core.ui.base.LoadingScreenParameters
+import com.ebsoftware.nero.core.ui.stocks.StocksScreenParameters
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,7 +21,8 @@ class StocksScreenTest {
             Screen(uiState = StocksUiState.Success(emptyList()))
         }
 
-        // TODO finish test
+        composeRule.onNodeWithTag(StocksScreenParameters.TEST_TAG)
+            .assertIsDisplayed()
     }
 
     @Test

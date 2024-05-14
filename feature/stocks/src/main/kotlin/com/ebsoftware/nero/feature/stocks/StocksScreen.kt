@@ -6,6 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ebsoftware.nero.core.ui.base.ErrorScreen
 import com.ebsoftware.nero.core.ui.base.LoadingScreen
+import com.ebsoftware.nero.core.ui.stocks.StocksScreen
 
 @Composable
 internal fun StocksRoute(
@@ -24,6 +25,10 @@ internal fun Screen(
     modifier: Modifier = Modifier,
 ) {
     when (uiState) {
+        is StocksUiState.Success -> StocksScreen(
+            onAddSecurityMovements = {},
+            modifier = modifier,
+        )
         is StocksUiState.Loading -> LoadingScreen(
             modifier = modifier,
         )
@@ -31,6 +36,5 @@ internal fun Screen(
             modifier = modifier,
             errorText = uiState.throwable.message.orEmpty(),
         )
-        is StocksUiState.Success -> Unit
     }
 }
