@@ -11,6 +11,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class StockPositionDaoTest {
     private lateinit var stockPositionDao: StockPositionDao
@@ -20,11 +21,10 @@ class StockPositionDaoTest {
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        db =
-            Room.inMemoryDatabaseBuilder(
-                context,
-                StockDatabase::class.java,
-            ).build()
+        db = Room.inMemoryDatabaseBuilder(
+            context,
+            StockDatabase::class.java,
+        ).build()
         stockPositionDao = db.stockPositionDao()
     }
 
@@ -38,8 +38,7 @@ class StockPositionDaoTest {
             SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
         )
         assertEquals(
-            expected =
-            listOf(
+            expected = listOf(
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
             ),
@@ -56,16 +55,14 @@ class StockPositionDaoTest {
             SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L),
         )
         assertEquals(
-            expected =
-            listOf(
+            expected = listOf(
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
                 SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
             ),
             actual = stockPositionDao.getAll("AAPL").first(),
         )
         assertEquals(
-            expected =
-            listOf(
+            expected = listOf(
                 SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
                 SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L),
             ),
@@ -77,14 +74,30 @@ class StockPositionDaoTest {
     fun testInsertedEntriesCanBeDeleted() = runTest {
         stockPositionDao.insert(
             SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
+            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
         )
+        assertTrue(stockPositionDao.getAll().first().size == 2)
         stockPositionDao.delete(
             SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
         )
+        assertTrue(stockPositionDao.getAll().first().size == 1)
+    }
+
+    @Test
+    fun testInsertedEntriesCanBeReplaced() = runTest {
+        stockPositionDao.insert(
+            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L, quantity = 2),
+            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L, quantity = 2),
+        )
+        assertTrue(stockPositionDao.getAll().first().size == 2)
+        stockPositionDao.insert(
+            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L, quantity = 3),
+            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L, quantity = 3),
+        )
         assertEquals(
-            expected =
-            listOf(
-                SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
+            expected = listOf(
+                SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L, quantity = 3),
+                SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L, quantity = 3),
             ),
             actual = stockPositionDao.getAll().first(),
         )

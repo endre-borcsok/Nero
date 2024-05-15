@@ -3,6 +3,7 @@ package com.ebsoftware.nero.core.database.stocks.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.ebsoftware.nero.core.database.stocks.model.SecurityMovementEntity
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +19,7 @@ interface StockPositionDao {
         ticker: String,
     ): Flow<List<SecurityMovementEntity>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(
         vararg users: SecurityMovementEntity,
     )
