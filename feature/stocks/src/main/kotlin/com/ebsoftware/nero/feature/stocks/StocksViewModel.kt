@@ -1,6 +1,5 @@
 package com.ebsoftware.nero.feature.stocks
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ebsoftware.nero.core.data.stocks.StockRepository
@@ -13,6 +12,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.io.InputStream
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,11 +33,11 @@ internal class StocksViewModel @Inject constructor(
             )
 
     fun addSecurityMovements(
-        uris: List<Uri>,
+        files: List<InputStream>,
     ) {
         viewModelScope.launch {
             stockRepository.addSecurityMovements(
-                securityMovements = getSecurityMovements(uris),
+                securityMovements = getSecurityMovements(files),
             )
         }
     }

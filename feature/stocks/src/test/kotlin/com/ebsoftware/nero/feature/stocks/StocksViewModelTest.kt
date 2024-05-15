@@ -1,6 +1,5 @@
 package com.ebsoftware.nero.feature.stocks
 
-import android.net.Uri
 import com.ebsoftware.nero.core.data.stocks.StockRepository
 import com.ebsoftware.nero.core.domain.GetSecurityMovements
 import com.ebsoftware.nero.core.model.SecurityMovement
@@ -18,6 +17,7 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
+import java.io.InputStream
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -66,7 +66,7 @@ class StocksViewModelTest {
     @Test
     fun `when security movement files are added then they are forwarded to the repository as domain models`() = runTest {
         val viewModel = initViewModel()
-        val uris = List(3) { mock<Uri>() }
+        val uris = List(3) { mock<InputStream>() }
         val securityMovements = List(3) { mock<SecurityMovement>() }
         whenever(
             getSecurityMovements.invoke(uris),
