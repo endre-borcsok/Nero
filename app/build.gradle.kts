@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.nero.android.application)
     alias(libs.plugins.nero.android.application.compose)
+    alias(libs.plugins.nero.android.hilt)
 }
 
 android {
@@ -26,6 +27,7 @@ android {
 
 dependencies {
     implementation(projects.feature.home)
+    implementation(projects.feature.stocks)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
