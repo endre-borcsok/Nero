@@ -11,5 +11,6 @@ dependencies {
     api(libs.kotlinx.coroutines.test)
     api(libs.kotlin.test)
     api(libs.mockito.kotlin)
+    api(libs.mockito.inline)
     api(libs.okhttp.logging)
 }

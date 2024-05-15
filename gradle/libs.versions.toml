@@ -21,6 +21,7 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 material3 = "1.0.0"
 mockitoKotlin = "4.1.0"
+mockitoInline = "2.13.0"
 navigationCommonKtx = "2.7.7"
 navigationRuntimeKtx = "2.7.7"
 okhttp = "4.12.0"
@@ -60,6 +61,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
+mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockitoInline" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlinx-coroutines-guava = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-guava", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }

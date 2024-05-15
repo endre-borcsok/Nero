@@ -7,7 +7,7 @@ interface StockRepository {
 
     fun getSecurityMovements(): Flow<List<SecurityMovement>>
 
-    suspend fun addPositions(
-        positions: List<SecurityMovement>,
+    suspend fun addSecurityMovements(
+        securityMovements: List<SecurityMovement>,
     )
 }

@@ -1,7 +1,10 @@
 package com.ebsoftware.nero.feature.stocks
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ebsoftware.nero.core.ui.base.ErrorScreen
@@ -13,9 +16,15 @@ internal fun StocksRoute(
     modifier: Modifier = Modifier,
     viewModel: StocksViewModel = hiltViewModel(),
 ) {
+    val multiFilePicker = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetMultipleContents(),
+        onResult = viewModel::addSecurityMovements,
+    )
+
     Screen(
         modifier = modifier,
         uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
+        onLaunchActivityForResult = multiFilePicker::launch,
     )
 }
 
@@ -23,10 +32,11 @@ internal fun StocksRoute(
 internal fun Screen(
     uiState: StocksUiState,
     modifier: Modifier = Modifier,
+    onLaunchActivityForResult: (String) -> Unit = {},
 ) {
     when (uiState) {
         is StocksUiState.Success -> StocksScreen(
-            onAddSecurityMovements = {},
+            onAddSecurityMovements = { onLaunchActivityForResult("*/*") },
             modifier = modifier,
         )
         is StocksUiState.Loading -> LoadingScreen(
@@ -37,4 +47,10 @@ internal fun Screen(
             errorText = uiState.throwable.message.orEmpty(),
         )
     }
+}
+
+@Preview
+@Composable
+internal fun ScreenPreview() {
+    Screen(uiState = StocksUiState.Success(emptyList()))
 }

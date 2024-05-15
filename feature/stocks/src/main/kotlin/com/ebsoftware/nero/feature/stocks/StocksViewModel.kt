@@ -1,8 +1,10 @@
 package com.ebsoftware.nero.feature.stocks
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ebsoftware.nero.core.data.stocks.StockRepository
+import com.ebsoftware.nero.core.domain.GetSecurityMovements
 import com.ebsoftware.nero.core.model.SecurityMovement
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -10,11 +12,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 internal class StocksViewModel @Inject constructor(
-    stockRepository: StockRepository,
+    private val stockRepository: StockRepository,
+    private val getSecurityMovements: GetSecurityMovements,
 ) : ViewModel() {
 
     val uiState: StateFlow<StocksUiState> =
@@ -27,6 +31,16 @@ internal class StocksViewModel @Inject constructor(
                 started = SharingStarted.Lazily,
                 initialValue = StocksUiState.Loading,
             )
+
+    fun addSecurityMovements(
+        uris: List<Uri>,
+    ) {
+        viewModelScope.launch {
+            stockRepository.addSecurityMovements(
+                securityMovements = getSecurityMovements(uris),
+            )
+        }
+    }
 }
 
 internal sealed interface StocksUiState {

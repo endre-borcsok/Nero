@@ -5,7 +5,7 @@ import java.io.InputStream
 
 interface HLConverter {
 
-    fun convert(
+    suspend fun convert(
         inputStream: InputStream,
     ): List<SecurityMovement>
 }

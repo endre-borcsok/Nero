@@ -13,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class HLCSVConverter @Inject constructor() : HLConverter {
 
-    override fun convert(
+    override suspend fun convert(
         inputStream: InputStream,
     ): List<SecurityMovement> {
         val reader = getReader(inputStream)

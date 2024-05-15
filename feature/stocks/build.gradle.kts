@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(projects.core.data.stocks)
+    implementation(projects.core.domain)
     implementation(projects.core.model.stocks)
     implementation(projects.core.ui.base)
     implementation(projects.core.ui.stocks)

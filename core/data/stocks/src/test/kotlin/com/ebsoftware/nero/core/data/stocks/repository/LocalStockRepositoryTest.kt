@@ -32,7 +32,7 @@ class LocalStockRepositoryTest {
         val positions = listOf(SecurityMovement.EMPTY, SecurityMovement.EMPTY)
         LocalStockRepository(
             stockPositionDao = stockPositionDao,
-        ).addPositions(positions)
+        ).addSecurityMovements(positions)
         verify(stockPositionDao).insert(*positions.map(SecurityMovement::transform).toTypedArray())
     }
 }

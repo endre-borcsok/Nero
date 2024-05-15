@@ -1,6 +1,7 @@
 package com.ebsoftware.nero.core.converter.stocks.hl.csv
 
 import com.ebsoftware.nero.core.model.SecurityMovement
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -8,7 +9,7 @@ import kotlin.test.assertEquals
 
 class HLCSVConverterTest {
     @Test
-    fun `when CSV file converter is used then data is mapped correctly`() {
+    fun `when CSV file converter is used then data is mapped correctly`() = runTest {
         val testStream =
             "Security movements for:, Nice Company, Common Stock USD 0.01 (CDI) , , ,\n" +
                 "Client Name: Mr John Smith , , , , ,\n" +
