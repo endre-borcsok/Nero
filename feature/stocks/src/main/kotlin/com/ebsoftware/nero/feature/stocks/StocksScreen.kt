@@ -20,7 +20,11 @@ internal fun StocksRoute(
     val contentResolver = LocalContext.current.contentResolver
     val multiFilePicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetMultipleContents(),
-        onResult = { it.map(contentResolver::openInputStream) },
+        onResult = { uris ->
+            viewModel.addSecurityMovements(
+                files = uris.mapNotNull(contentResolver::openInputStream),
+            )
+        },
     )
 
     Screen(
