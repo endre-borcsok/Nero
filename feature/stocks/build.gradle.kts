@@ -14,4 +14,5 @@ dependencies {
     implementation(projects.core.model.stocks)
     implementation(projects.core.ui.base)
     implementation(projects.core.ui.stocks)
+    implementation(projects.core.ui.stocks.model)
 }

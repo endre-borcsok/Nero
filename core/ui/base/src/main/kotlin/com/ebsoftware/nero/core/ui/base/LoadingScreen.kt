@@ -9,12 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 
-class LoadingScreenParameters {
-    companion object {
-        const val TEST_TAG = "com.ebsoftware.nero.core.ui.base_testTag"
-    }
-}
-
 @Composable
 fun LoadingScreen(
     modifier: Modifier = Modifier,
@@ -22,7 +16,7 @@ fun LoadingScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .testTag(LoadingScreenParameters.TEST_TAG),
+            .testTag("com.ebsoftware.nero.core.ui.base_testTag"),
     ) {
         CircularProgressIndicator(
             modifier = Modifier.align(Alignment.Center),

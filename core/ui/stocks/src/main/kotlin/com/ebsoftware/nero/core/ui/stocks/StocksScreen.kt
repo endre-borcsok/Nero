@@ -1,8 +1,11 @@
 package com.ebsoftware.nero.core.ui.stocks
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
@@ -13,22 +16,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
 
-class StocksScreenParameters {
-    companion object {
-        const val TEST_TAG = "com.ebsoftware.nero.core.ui.stocks_testTag"
-    }
+internal object StocksScreenParameters {
+    val contentPadding = 16.dp
+    val columnSpacing = 8.dp
 }
 
 @Composable
 fun StocksScreen(
+    securityMovements: List<SecurityMovementViewData>,
     onAddSecurityMovements: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
         modifier = modifier
             .fillMaxSize()
-            .testTag(StocksScreenParameters.TEST_TAG),
+            .testTag("com.ebsoftware.nero.core.ui.stocks_testTag"),
         floatingActionButton = {
             SmallFloatingActionButton(
                 onClick = onAddSecurityMovements,
@@ -39,7 +44,12 @@ fun StocksScreen(
     ) { padding ->
         LazyColumn(
             modifier = Modifier.padding(padding),
+            contentPadding = PaddingValues(StocksScreenParameters.contentPadding),
+            verticalArrangement = Arrangement.spacedBy(StocksScreenParameters.columnSpacing),
         ) {
+            items(securityMovements) {
+                SecurityMovement(viewData = it)
+            }
         }
     }
 }
@@ -48,6 +58,13 @@ fun StocksScreen(
 @Composable
 internal fun StocksScreenPreview() {
     StocksScreen(
+        securityMovements = List(5) {
+            SecurityMovementViewData.EMPTY.copy(
+                ticker = "AAPL",
+                quantity = 4,
+                cost = 123.445,
+            )
+        },
         onAddSecurityMovements = {},
     )
 }

@@ -46,6 +46,7 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/core/ui/base" />
             <option value="$PROJECT_DIR$/core/ui/stocks" />
+            <option value="$PROJECT_DIR$/core/ui/stocks/model" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/stocks" />

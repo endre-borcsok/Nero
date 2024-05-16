@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.ebsoftware.nero.core.data.stocks.StockRepository
 import com.ebsoftware.nero.core.domain.GetSecurityMovements
 import com.ebsoftware.nero.core.model.SecurityMovement
+import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
+import com.ebsoftware.nero.feature.stocks.transform.transform
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -24,7 +26,7 @@ internal class StocksViewModel @Inject constructor(
     val uiState: StateFlow<StocksUiState> =
         stockRepository
             .getSecurityMovements()
-            .map<List<SecurityMovement>, StocksUiState> { StocksUiState.Success(it) }
+            .map<List<SecurityMovement>, StocksUiState> { StocksUiState.Success(it.map(SecurityMovement::transform)) }
             .catch { emit(StocksUiState.Error(it)) }
             .stateIn(
                 scope = viewModelScope,
@@ -46,5 +48,5 @@ internal class StocksViewModel @Inject constructor(
 internal sealed interface StocksUiState {
     data object Loading : StocksUiState
     data class Error(val throwable: Throwable) : StocksUiState
-    data class Success(val securityMovements: List<SecurityMovement>) : StocksUiState
+    data class Success(val securityMovements: List<SecurityMovementViewData>) : StocksUiState
 }

@@ -44,6 +44,7 @@ internal fun Screen(
 ) {
     when (uiState) {
         is StocksUiState.Success -> StocksScreen(
+            securityMovements = uiState.securityMovements,
             onAddSecurityMovements = { onLaunchActivityForResult("*/*") },
             modifier = modifier,
         )

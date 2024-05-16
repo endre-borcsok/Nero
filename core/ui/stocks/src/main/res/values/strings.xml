@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="stocks_screen_fab_content_description">Add security movements</string>
+
+    <string name="security_movement_quantity_text">Quantity</string>
 </resources>

@@ -3,6 +3,7 @@ package com.ebsoftware.nero.feature.stocks
 import com.ebsoftware.nero.core.data.stocks.StockRepository
 import com.ebsoftware.nero.core.domain.GetSecurityMovements
 import com.ebsoftware.nero.core.model.SecurityMovement
+import com.ebsoftware.nero.feature.stocks.transform.transform
 import com.ebsoftware.nero.testing.jvm.MainDispatcherRule
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
@@ -48,7 +49,7 @@ class StocksViewModelTest {
         val movements = listOf(SecurityMovement.EMPTY)
         whenever(stockRepository.getSecurityMovements()) doReturn flowOf(movements)
         assertEquals(
-            expected = StocksUiState.Success(movements),
+            expected = StocksUiState.Success(movements.map(SecurityMovement::transform)),
             actual = initViewModel().uiState.first(),
         )
     }

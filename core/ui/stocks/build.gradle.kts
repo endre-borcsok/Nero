@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.ebsoftware.nero.core.ui.stocks"
 }
+
+dependencies {
+    implementation(projects.core.ui.stocks.model)
+}

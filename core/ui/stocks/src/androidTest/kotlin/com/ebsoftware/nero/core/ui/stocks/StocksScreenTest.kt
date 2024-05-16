@@ -4,11 +4,12 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
+import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertTrue
 
-class StocksScreenKtTest {
+class StocksScreenTest {
 
     @get:Rule
     val composeRule = createAndroidComposeRule<ComponentActivity>()
@@ -20,6 +21,7 @@ class StocksScreenKtTest {
         composeRule.run {
             setContent {
                 StocksScreen(
+                    securityMovements = securityMovements,
                     onAddSecurityMovements = { addSecurityMovementsClicked = true },
                 )
             }
@@ -31,4 +33,13 @@ class StocksScreenKtTest {
 
         assertTrue(addSecurityMovementsClicked)
     }
+
+    private val securityMovements =
+        List(5) {
+            SecurityMovementViewData.EMPTY.copy(
+                ticker = "AAPL",
+                quantity = 4,
+                cost = 123.445,
+            )
+        }
 }

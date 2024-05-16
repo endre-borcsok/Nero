@@ -7,8 +7,6 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.ebsoftware.nero.core.ui.base.LoadingScreenParameters
-import com.ebsoftware.nero.core.ui.stocks.StocksScreenParameters
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -24,7 +22,7 @@ class StocksScreenTest {
             Screen(uiState = StocksUiState.Success(emptyList()))
         }
 
-        composeRule.onNodeWithTag(StocksScreenParameters.TEST_TAG)
+        composeRule.onNodeWithTag("com.ebsoftware.nero.core.ui.stocks_testTag")
             .assertIsDisplayed()
     }
 
@@ -55,7 +53,7 @@ class StocksScreenTest {
             Screen(uiState = StocksUiState.Loading)
         }
 
-        composeRule.onNodeWithTag(LoadingScreenParameters.TEST_TAG)
+        composeRule.onNodeWithTag("com.ebsoftware.nero.core.ui.base_testTag")
             .assertIsDisplayed()
     }
 
