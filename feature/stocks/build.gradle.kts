@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.nero.android.feature)
-    alias(libs.plugins.nero.android.hilt)
     alias(libs.plugins.nero.android.library.compose)
+    alias(libs.plugins.nero.android.hilt)
 }
 
 android {

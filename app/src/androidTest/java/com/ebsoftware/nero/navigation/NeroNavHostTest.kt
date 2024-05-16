@@ -1,4 +1,4 @@
-package com.ebsoftware.nero.ui
+package com.ebsoftware.nero.navigation
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -6,14 +6,14 @@ import com.ebsoftware.nero.MainActivity
 import org.junit.Rule
 import org.junit.Test
 
-class NeroAppTest {
+class NeroNavHostTest {
 
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+    val composeRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun testAppLaunch() {
-        composeTestRule.onNodeWithTag("home_route/")
+    fun testStartDestinationIsStocksScreen() {
+        composeRule.onNodeWithTag("stocks_route/")
             .assertExists()
     }
 }

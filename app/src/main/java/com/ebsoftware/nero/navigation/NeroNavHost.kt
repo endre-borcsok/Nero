@@ -2,9 +2,10 @@ package com.ebsoftware.nero.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.navigation.compose.NavHost
 import com.ebsoftware.nero.feature.home.navigation.HOME_ROUTE
-import com.ebsoftware.nero.feature.home.navigation.homeScreen
+import com.ebsoftware.nero.feature.home.navigation.homeNavigation
 import com.ebsoftware.nero.ui.NeroAppState
 
 @Composable
@@ -16,8 +17,8 @@ internal fun NeroNavHost(
     NavHost(
         navController = appState.navController,
         startDestination = startDestination,
-        modifier = modifier,
+        modifier = modifier.testTag(HOME_ROUTE),
     ) {
-        homeScreen()
+        homeNavigation()
     }
 }

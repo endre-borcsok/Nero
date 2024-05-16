@@ -5,12 +5,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ebsoftware.nero.core.ui.base.ErrorScreen
 import com.ebsoftware.nero.core.ui.base.LoadingScreen
 import com.ebsoftware.nero.core.ui.stocks.StocksScreen
+import com.ebsoftware.nero.feature.stocks.navigation.STOCKS_ROUTE
 
 @Composable
 internal fun StocksRoute(
@@ -28,9 +30,9 @@ internal fun StocksRoute(
     )
 
     Screen(
-        modifier = modifier,
         uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
         onLaunchActivityForResult = multiFilePicker::launch,
+        modifier = modifier.testTag(STOCKS_ROUTE),
     )
 }
 
