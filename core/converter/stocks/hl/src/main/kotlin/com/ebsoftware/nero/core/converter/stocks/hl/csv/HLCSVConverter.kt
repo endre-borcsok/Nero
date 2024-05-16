@@ -18,6 +18,7 @@ class HLCSVConverter @Inject constructor() : HLConverter {
     ): List<SecurityMovement> {
         val reader = getReader(inputStream)
         val rows = reader.readAll()
+        val company = rows[0].joinToString()
         val headers =
             rows.findContains(DATE_COL)
                 ?: throw IllegalArgumentException("Missing header")
@@ -27,6 +28,7 @@ class HLCSVConverter @Inject constructor() : HLConverter {
         val positions = rows.drop(rows.indexOf(headers) + 2)
         return positions.map {
             SecurityMovement.EMPTY.copy(
+                ticker = company,
                 date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH).parse(it[dateCol])!!,
                 cost = it[costCol].toDouble(),
                 quantity = it[quantityCol].toDouble().toInt(),
