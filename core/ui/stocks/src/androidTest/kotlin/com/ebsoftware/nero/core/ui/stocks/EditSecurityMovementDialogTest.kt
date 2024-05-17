@@ -87,7 +87,6 @@ class EditSecurityMovementDialogTest {
             onNodeWithText(
                 activity.resources.getString(EditSecurityMovementDialogParameters.dialogCancelText),
             ).performClick()
-
             assertTrue(onDismiss)
         }
     }
