@@ -2,6 +2,8 @@ package com.ebsoftware.nero.core.ui.stocks
 
 import android.icu.text.DateFormat
 import androidx.annotation.StringRes
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -9,11 +11,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,17 +26,27 @@ import java.util.Locale
 
 internal object SecurityMovementParams {
     @StringRes val quantityText = R.string.security_movement_quantity_text
+    val cardShape = RoundedCornerShape(16.dp)
     val contentPadding = 16.dp
     val verticalSpacing = 16.dp
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SecurityMovement(
     viewData: SecurityMovementViewData,
     modifier: Modifier = Modifier,
+    onEditDetails: (SecurityMovementViewData) -> Unit,
 ) {
     Card(
-        modifier = modifier.height(IntrinsicSize.Min),
+        shape = SecurityMovementParams.cardShape,
+        modifier = modifier
+            .height(IntrinsicSize.Min)
+            .clip(SecurityMovementParams.cardShape)
+            .combinedClickable(
+                onClick = {},
+                onLongClick = { onEditDetails(viewData) },
+            ),
     ) {
         Row(
             modifier = Modifier.padding(SecurityMovementParams.contentPadding),
@@ -81,5 +95,6 @@ internal fun SecurityMovementPreview() {
             quantity = 4,
             cost = 123.445,
         ),
+        onEditDetails = {},
     )
 }

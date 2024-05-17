@@ -27,8 +27,9 @@ internal object StocksScreenParameters {
 @Composable
 fun StocksScreen(
     securityMovements: List<SecurityMovementViewData>,
-    onAddSecurityMovements: () -> Unit,
     modifier: Modifier = Modifier,
+    onAddSecurityMovements: () -> Unit,
+    onEditSecurityMovementDetails: (SecurityMovementViewData) -> Unit,
 ) {
     Scaffold(
         modifier = modifier
@@ -48,7 +49,10 @@ fun StocksScreen(
             verticalArrangement = Arrangement.spacedBy(StocksScreenParameters.columnSpacing),
         ) {
             items(securityMovements) {
-                SecurityMovement(viewData = it)
+                SecurityMovement(
+                    viewData = it,
+                    onEditDetails = onEditSecurityMovementDetails,
+                )
             }
         }
     }
@@ -66,5 +70,6 @@ internal fun StocksScreenPreview() {
             )
         },
         onAddSecurityMovements = {},
+        onEditSecurityMovementDetails = {},
     )
 }

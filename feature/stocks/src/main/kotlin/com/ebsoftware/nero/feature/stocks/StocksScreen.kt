@@ -3,15 +3,20 @@ package com.ebsoftware.nero.feature.stocks
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ebsoftware.nero.core.ui.base.ErrorScreen
 import com.ebsoftware.nero.core.ui.base.LoadingScreen
+import com.ebsoftware.nero.core.ui.stocks.EditSecurityMovementDialog
 import com.ebsoftware.nero.core.ui.stocks.StocksScreen
+import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
 import com.ebsoftware.nero.feature.stocks.navigation.STOCKS_ROUTE
 
 @Composable
@@ -33,6 +38,7 @@ internal fun StocksRoute(
         uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
         onLaunchActivityForResult = multiFilePicker::launch,
         modifier = modifier.testTag(STOCKS_ROUTE),
+        onEditSecurityMovementDetails = { },
     )
 }
 
@@ -41,12 +47,24 @@ internal fun Screen(
     uiState: StocksUiState,
     modifier: Modifier = Modifier,
     onLaunchActivityForResult: (String) -> Unit = {},
+    onEditSecurityMovementDetails: (SecurityMovementViewData) -> Unit = {},
 ) {
+    val editedSecurityMovement = rememberSaveable { mutableStateOf<SecurityMovementViewData?>(null) }
+
+    editedSecurityMovement.value?.let {
+        EditSecurityMovementDialog(
+            securityMovementViewData = it,
+            onDismiss = { editedSecurityMovement.value = null },
+            onUpdate = onEditSecurityMovementDetails,
+        )
+    }
+
     when (uiState) {
         is StocksUiState.Success -> StocksScreen(
             securityMovements = uiState.securityMovements,
             onAddSecurityMovements = { onLaunchActivityForResult("*/*") },
             modifier = modifier,
+            onEditSecurityMovementDetails = { editedSecurityMovement.value = it },
         )
         is StocksUiState.Loading -> LoadingScreen(
             modifier = modifier,
