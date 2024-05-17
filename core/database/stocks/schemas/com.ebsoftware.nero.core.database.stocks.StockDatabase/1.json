@@ -2,12 +2,18 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "caef6fc2bc290ec9047aa44e307d5a4e",
+    "identityHash": "3614e90a4d227204c36af0b4e72d0123",
     "entities": [
       {
         "tableName": "SecurityMovementEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ticker` TEXT NOT NULL, `dateUtcMs` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `price` REAL NOT NULL, PRIMARY KEY(`ticker`, `dateUtcMs`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `ticker` TEXT NOT NULL, `dateUtcMs` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `price` REAL NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
           {
             "fieldPath": "ticker",
             "columnName": "ticker",
@@ -36,8 +42,7 @@
         "primaryKey": {
           "autoGenerate": false,
           "columnNames": [
-            "ticker",
-            "dateUtcMs"
+            "id"
           ]
         },
         "indices": [],
@@ -47,7 +52,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'caef6fc2bc290ec9047aa44e307d5a4e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3614e90a4d227204c36af0b4e72d0123')"
     ]
   }
 }

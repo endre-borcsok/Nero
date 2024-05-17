@@ -22,12 +22,14 @@ class HLCSVConverter @Inject constructor() : HLConverter {
         val headers =
             rows.findContains(DATE_COL)
                 ?: throw IllegalArgumentException("Missing header")
+        val referenceCol = headers.indexOfContains(REFERENCE_COL)
         val dateCol = headers.indexOfContains(DATE_COL)
         val quantityCol = headers.indexOfContains(QUANTITY_COL)
         val costCol = headers.indexOfContains(COST_COL)
         val positions = rows.drop(rows.indexOf(headers) + 2)
         return positions.map {
             SecurityMovement.EMPTY.copy(
+                id = it[referenceCol],
                 ticker = company,
                 date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH).parse(it[dateCol])!!,
                 cost = it[costCol].toDouble(),
@@ -51,6 +53,7 @@ class HLCSVConverter @Inject constructor() : HLConverter {
 
     companion object {
         const val DATE_COL = "DATE"
+        const val REFERENCE_COL = "REFERENCE"
         const val QUANTITY_COL = "QUANTITY"
         const val COST_COL = "TOTAL COST"
     }

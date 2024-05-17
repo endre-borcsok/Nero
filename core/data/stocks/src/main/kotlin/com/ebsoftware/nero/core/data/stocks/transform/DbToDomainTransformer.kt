@@ -11,6 +11,7 @@ internal fun List<SecurityMovementEntity>.transform() = map(SecurityMovementEnti
 internal fun List<SecurityMovement>.transform() = map(SecurityMovement::transform)
 
 internal fun SecurityMovementEntity.transform() = SecurityMovement(
+    id = id,
     ticker = ticker,
     quantity = quantity,
     cost = price,
@@ -18,6 +19,7 @@ internal fun SecurityMovementEntity.transform() = SecurityMovement(
 )
 
 internal fun SecurityMovement.transform() = SecurityMovementEntity(
+    id = id,
     ticker = ticker,
     quantity = quantity,
     price = cost,

@@ -10,18 +10,18 @@ class DbToDomainTransformerTest {
     @Test
     fun `when db position list is transformed into domain position list then mapping is correct`() {
         assertEquals(
-            expected =
-            listOf(
+            expected = listOf(
                 SecurityMovement(
+                    id = "id",
                     ticker = "ticker",
                     quantity = 10,
                     cost = 2.0,
                     date = Date(10L),
                 ),
             ),
-            actual =
-            listOf(
+            actual = listOf(
                 SecurityMovementEntity(
+                    id = "id",
                     ticker = "ticker",
                     quantity = 10,
                     price = 2.0,
@@ -34,15 +34,15 @@ class DbToDomainTransformerTest {
     @Test
     fun `when db position is transformed into domain position then mapping is correct`() {
         assertEquals(
-            expected =
-            SecurityMovement(
+            expected = SecurityMovement(
+                id = "id",
                 ticker = "ticker",
                 quantity = 10,
                 cost = 2.0,
                 date = Date(10L),
             ),
-            actual =
-            SecurityMovementEntity(
+            actual = SecurityMovementEntity(
+                id = "id",
                 ticker = "ticker",
                 quantity = 10,
                 price = 2.0,
@@ -54,18 +54,18 @@ class DbToDomainTransformerTest {
     @Test
     fun `when domain position list is transformed into db position list then mapping is correct`() {
         assertEquals(
-            expected =
-            listOf(
+            expected = listOf(
                 SecurityMovementEntity(
+                    id = "id",
                     ticker = "ticker",
                     quantity = 10,
                     price = 2.0,
                     dateUtcMs = 10L,
                 ),
             ),
-            actual =
-            listOf(
+            actual = listOf(
                 SecurityMovement(
+                    id = "id",
                     ticker = "ticker",
                     quantity = 10,
                     cost = 2.0,
@@ -78,15 +78,15 @@ class DbToDomainTransformerTest {
     @Test
     fun `when domain position is transformed into db position then mapping is correct`() {
         assertEquals(
-            expected =
-            SecurityMovementEntity(
+            expected = SecurityMovementEntity(
+                id = "id",
                 ticker = "ticker",
                 quantity = 10,
                 price = 2.0,
                 dateUtcMs = 10L,
             ),
-            actual =
-            SecurityMovement(
+            actual = SecurityMovement(
+                id = "id",
                 ticker = "ticker",
                 quantity = 10,
                 cost = 2.0,

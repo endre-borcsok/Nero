@@ -14,12 +14,14 @@ class ViewStaTransformerTest {
         val date = Date()
         assertEquals(
             expected = SecurityMovementViewData(
+                id = "id",
                 ticker = "ticker",
                 cost = 123.45676,
                 quantity = 999,
                 date = date,
             ),
             actual = SecurityMovement(
+                id = "id",
                 ticker = "ticker",
                 cost = 123.45676,
                 quantity = 999,

@@ -8,6 +8,7 @@ import java.util.Locale
 import kotlin.test.assertEquals
 
 class HLCSVConverterTest {
+
     @Test
     fun `when CSV file converter is used then data is mapped correctly`() = runTest {
         val testStream =
@@ -29,18 +30,21 @@ class HLCSVConverterTest {
             expected =
             listOf(
                 SecurityMovement.EMPTY.copy(
+                    id = "E 01251223",
                     ticker = "Security movements for:,  Nice Company,  Common Stock USD 0.01 (CDI) ,  ,  , ",
                     date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH).parse("04/04/2024")!!,
                     cost = 0.00,
                     quantity = 0,
                 ),
                 SecurityMovement.EMPTY.copy(
+                    id = "E 01251223",
                     ticker = "Security movements for:,  Nice Company,  Common Stock USD 0.01 (CDI) ,  ,  , ",
                     date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH).parse("04/04/2024")!!,
                     cost = -286.76,
                     quantity = 0,
                 ),
                 SecurityMovement.EMPTY.copy(
+                    id = "B533982422",
                     ticker = "Security movements for:,  Nice Company,  Common Stock USD 0.01 (CDI) ,  ,  , ",
                     date = SimpleDateFormat("dd/mm/yyyy", Locale.ENGLISH).parse("14/01/2020")!!,
                     cost = 435.21,

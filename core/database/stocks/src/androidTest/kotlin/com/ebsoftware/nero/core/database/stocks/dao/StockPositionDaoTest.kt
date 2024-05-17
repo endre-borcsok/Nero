@@ -34,13 +34,13 @@ class StockPositionDaoTest {
     @Test
     fun testInsertedEntriesAreListed() = runTest {
         stockPositionDao.insert(
-            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
+            SecurityMovementEntity.EMPTY.copy(id = "A-AAPL", ticker = "AAPL"),
+            SecurityMovementEntity.EMPTY.copy(id = "B-AAPL", ticker = "AAPL"),
         )
         assertEquals(
             expected = listOf(
-                SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-                SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
+                SecurityMovementEntity.EMPTY.copy(id = "A-AAPL", ticker = "AAPL"),
+                SecurityMovementEntity.EMPTY.copy(id = "B-AAPL", ticker = "AAPL"),
             ),
             actual = stockPositionDao.getAll().first(),
         )
@@ -49,22 +49,22 @@ class StockPositionDaoTest {
     @Test
     fun testInsertedEntriesAreListedByTicker() = runTest {
         stockPositionDao.insert(
-            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
-            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
-            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L),
+            SecurityMovementEntity.EMPTY.copy(id = "A-AAPL", ticker = "AAPL"),
+            SecurityMovementEntity.EMPTY.copy(id = "B-AAPL", ticker = "AAPL"),
+            SecurityMovementEntity.EMPTY.copy(id = "A-IBM", ticker = "IBM"),
+            SecurityMovementEntity.EMPTY.copy(id = "B-IBM", ticker = "IBM"),
         )
         assertEquals(
             expected = listOf(
-                SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-                SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 2L),
+                SecurityMovementEntity.EMPTY.copy(id = "A-AAPL", ticker = "AAPL"),
+                SecurityMovementEntity.EMPTY.copy(id = "B-AAPL", ticker = "AAPL"),
             ),
             actual = stockPositionDao.getAll("AAPL").first(),
         )
         assertEquals(
             expected = listOf(
-                SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
-                SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 2L),
+                SecurityMovementEntity.EMPTY.copy(id = "A-IBM", ticker = "IBM"),
+                SecurityMovementEntity.EMPTY.copy(id = "B-IBM", ticker = "IBM"),
             ),
             actual = stockPositionDao.getAll("IBM").first(),
         )
@@ -73,12 +73,12 @@ class StockPositionDaoTest {
     @Test
     fun testInsertedEntriesCanBeDeleted() = runTest {
         stockPositionDao.insert(
-            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L),
-            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
+            SecurityMovementEntity.EMPTY.copy(id = "AAPL", ticker = "AAPL"),
+            SecurityMovementEntity.EMPTY.copy(id = "IBM", ticker = "IBM"),
         )
         assertTrue(stockPositionDao.getAll().first().size == 2)
         stockPositionDao.delete(
-            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L),
+            SecurityMovementEntity.EMPTY.copy(id = "IBM", ticker = "IBM"),
         )
         assertTrue(stockPositionDao.getAll().first().size == 1)
     }
@@ -86,18 +86,18 @@ class StockPositionDaoTest {
     @Test
     fun testInsertedEntriesCanBeReplaced() = runTest {
         stockPositionDao.insert(
-            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L, quantity = 2),
-            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L, quantity = 2),
+            SecurityMovementEntity.EMPTY.copy(id = "AAPL", ticker = "AAPL", quantity = 2),
+            SecurityMovementEntity.EMPTY.copy(id = "IBM", ticker = "IBM", quantity = 2),
         )
         assertTrue(stockPositionDao.getAll().first().size == 2)
         stockPositionDao.insert(
-            SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L, quantity = 3),
-            SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L, quantity = 3),
+            SecurityMovementEntity.EMPTY.copy(id = "AAPL", ticker = "AAPL", quantity = 3),
+            SecurityMovementEntity.EMPTY.copy(id = "IBM", ticker = "IBM", quantity = 3),
         )
         assertEquals(
             expected = listOf(
-                SecurityMovementEntity.EMPTY.copy(ticker = "AAPL", dateUtcMs = 1L, quantity = 3),
-                SecurityMovementEntity.EMPTY.copy(ticker = "IBM", dateUtcMs = 1L, quantity = 3),
+                SecurityMovementEntity.EMPTY.copy(id = "AAPL", ticker = "AAPL", quantity = 3),
+                SecurityMovementEntity.EMPTY.copy(id = "IBM", ticker = "IBM", quantity = 3),
             ),
             actual = stockPositionDao.getAll().first(),
         )
