@@ -31,7 +31,7 @@ internal class StocksViewModel @Inject constructor(
             .getSecurityMovements()
             .map<List<SecurityMovement>, StocksUiState> { securityMovements ->
                 StocksUiState.Success(
-                    securityMovements = securityMovements
+                    aggregatedSecurityMovements = securityMovements
                         .run(getAggregatedSecurityMovements::invoke)
                         .map(SecurityMovement::transform),
                 )
@@ -73,5 +73,5 @@ internal class StocksViewModel @Inject constructor(
 internal sealed interface StocksUiState {
     data object Loading : StocksUiState
     data class Error(val throwable: Throwable) : StocksUiState
-    data class Success(val securityMovements: List<SecurityMovementViewData>) : StocksUiState
+    data class Success(val aggregatedSecurityMovements: List<SecurityMovementViewData>) : StocksUiState
 }

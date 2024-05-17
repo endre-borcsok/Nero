@@ -63,7 +63,7 @@ internal fun Screen(
 
     when (uiState) {
         is StocksUiState.Success -> StocksScreen(
-            securityMovements = uiState.securityMovements,
+            securityMovements = uiState.aggregatedSecurityMovements,
             onAddSecurityMovements = { onLaunchActivityForResult("*/*") },
             modifier = modifier,
             onEditSecurityMovementDetails = { editedSecurityMovement.value = it },
