@@ -4,6 +4,7 @@ import com.ebsoftware.nero.core.data.stocks.StockRepository
 import com.ebsoftware.nero.core.domain.GetAggregatedSecurityMovements
 import com.ebsoftware.nero.core.domain.GetSecurityMovements
 import com.ebsoftware.nero.core.model.SecurityMovement
+import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
 import com.ebsoftware.nero.feature.stocks.transform.transform
 import com.ebsoftware.nero.testing.jvm.MainDispatcherRule
 import kotlinx.coroutines.flow.first
@@ -81,5 +82,31 @@ class StocksViewModelTest {
         ).doReturn(securityMovements)
         viewModel.addSecurityMovements(uris)
         verify(stockRepository).addSecurityMovements(securityMovements)
+    }
+
+    @Test
+    fun `when updates security movement then updates are forwarded to the repository`() = runTest {
+        val viewModel = initViewModel()
+        val aggregatedSecurityMovementViewData = SecurityMovementViewData.EMPTY.copy(id = "viewId", ticker = "updatedTicker")
+        whenever(
+            stockRepository.getSecurityMovementById("viewId"),
+        ) doReturn SecurityMovement.EMPTY.copy(id = "viewId", ticker = "AAPL")
+        whenever(
+            stockRepository.getSecurityMovementsByTicker("AAPL"),
+        ) doReturn flowOf(
+            listOf(
+                SecurityMovement.EMPTY.copy(id = "1", ticker = "AAPL"),
+                SecurityMovement.EMPTY.copy(id = "2", ticker = "AAPL"),
+                SecurityMovement.EMPTY.copy(id = "3", ticker = "AAPL"),
+            ),
+        )
+        viewModel.updateSecurityMovementsByAggregatedItem(aggregatedSecurityMovementViewData)
+        verify(stockRepository).addSecurityMovements(
+            listOf(
+                SecurityMovement.EMPTY.copy(id = "1", ticker = "updatedTicker"),
+                SecurityMovement.EMPTY.copy(id = "2", ticker = "updatedTicker"),
+                SecurityMovement.EMPTY.copy(id = "3", ticker = "updatedTicker"),
+            ),
+        )
     }
 }

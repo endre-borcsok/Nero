@@ -11,7 +11,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ebsoftware.nero.core.ui.base.ErrorScreen
 import com.ebsoftware.nero.core.ui.base.LoadingScreen
 import com.ebsoftware.nero.core.ui.stocks.EditSecurityMovementDialog
@@ -38,7 +37,7 @@ internal fun StocksRoute(
         uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
         onLaunchActivityForResult = multiFilePicker::launch,
         modifier = modifier.testTag(STOCKS_ROUTE),
-        onEditSecurityMovementDetails = { },
+        onEditSecurityMovementDetails = viewModel::updateSecurityMovementsByAggregatedItem,
     )
 }
 
@@ -55,7 +54,10 @@ internal fun Screen(
         EditSecurityMovementDialog(
             securityMovementViewData = it,
             onDismiss = { editedSecurityMovement.value = null },
-            onUpdate = onEditSecurityMovementDetails,
+            onUpdate = {
+                onEditSecurityMovementDetails(it)
+                editedSecurityMovement.value = null
+            },
         )
     }
 

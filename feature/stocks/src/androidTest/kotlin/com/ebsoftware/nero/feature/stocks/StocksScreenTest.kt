@@ -2,6 +2,7 @@ package com.ebsoftware.nero.feature.stocks
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -52,7 +53,7 @@ class StocksScreenTest {
     }
 
     @Test
-    fun whenSecurityMovementIsEditedThenDisplaysDialog() {
+    fun whenSecurityMovementIsEditedThenHandlesDialog() {
         var securityMovement: SecurityMovementViewData? = null
 
         composeRule.setContent {
@@ -74,6 +75,9 @@ class StocksScreenTest {
         composeRule.onNodeWithText(
             composeRule.activity.resources.getString(R.string.security_movement_edit_dialog_confirm),
         ).performClick()
+        composeRule.onNodeWithText(
+            composeRule.activity.resources.getString(R.string.security_movement_edit_dialog_title),
+        ).assertIsNotDisplayed()
 
         assertEquals(
             expected = SecurityMovementViewData.EMPTY.copy(ticker = "AAPL"),

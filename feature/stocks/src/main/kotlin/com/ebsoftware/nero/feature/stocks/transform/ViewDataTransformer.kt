@@ -10,3 +10,11 @@ internal fun SecurityMovement.transform() = SecurityMovementViewData(
     date = date,
     cost = cost,
 )
+
+internal fun SecurityMovementViewData.transform() = SecurityMovement(
+    id = id,
+    ticker = ticker,
+    quantity = quantity,
+    date = date,
+    cost = cost,
+)

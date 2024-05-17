@@ -19,6 +19,11 @@ interface StockPositionDao {
         ticker: String,
     ): Flow<List<SecurityMovementEntity>>
 
+    @Query("SELECT * FROM securitymovemententity WHERE id IN (:id)")
+    suspend fun getById(
+        id: String,
+    ): SecurityMovementEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(
         vararg users: SecurityMovementEntity,

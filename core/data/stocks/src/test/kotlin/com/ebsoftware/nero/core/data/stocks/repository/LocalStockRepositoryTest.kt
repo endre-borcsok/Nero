@@ -2,6 +2,7 @@ package com.ebsoftware.nero.core.data.stocks.repository
 
 import com.ebsoftware.nero.core.data.stocks.transform.transform
 import com.ebsoftware.nero.core.database.stocks.dao.StockPositionDao
+import com.ebsoftware.nero.core.database.stocks.model.SecurityMovementEntity
 import com.ebsoftware.nero.core.model.SecurityMovement
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.test.runTest
@@ -25,6 +26,24 @@ class LocalStockRepositoryTest {
             stockPositionDao = stockPositionDao,
         ).getSecurityMovements()
         verify(stockPositionDao).getAll()
+    }
+
+    @Test
+    fun `when stream of positions requested by id then it is taken from the dao`() = runTest {
+        whenever(stockPositionDao.getById("id")) doReturn SecurityMovementEntity.EMPTY
+        LocalStockRepository(
+            stockPositionDao = stockPositionDao,
+        ).getSecurityMovementById("id")
+        verify(stockPositionDao).getById("id")
+    }
+
+    @Test
+    fun `when stream of positions requested by ticker then it is taken from the dao`() = runTest {
+        whenever(stockPositionDao.getAll("ticker")) doReturn emptyFlow()
+        LocalStockRepository(
+            stockPositionDao = stockPositionDao,
+        ).getSecurityMovementsByTicker("ticker")
+        verify(stockPositionDao).getAll("ticker")
     }
 
     @Test

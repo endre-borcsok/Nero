@@ -71,6 +71,24 @@ class StockPositionDaoTest {
     }
 
     @Test
+    fun testInsertedEntriesAreListedById() = runTest {
+        stockPositionDao.insert(
+            SecurityMovementEntity.EMPTY.copy(id = "A-AAPL", ticker = "AAPL"),
+            SecurityMovementEntity.EMPTY.copy(id = "B-AAPL", ticker = "AAPL"),
+            SecurityMovementEntity.EMPTY.copy(id = "A-IBM", ticker = "IBM"),
+            SecurityMovementEntity.EMPTY.copy(id = "B-IBM", ticker = "IBM"),
+        )
+        assertEquals(
+            expected = SecurityMovementEntity.EMPTY.copy(id = "A-AAPL", ticker = "AAPL"),
+            actual = stockPositionDao.getById("A-AAPL"),
+        )
+        assertEquals(
+            expected = SecurityMovementEntity.EMPTY.copy(id = "A-IBM", ticker = "IBM"),
+            actual = stockPositionDao.getById("A-IBM"),
+        )
+    }
+
+    @Test
     fun testInsertedEntriesCanBeDeleted() = runTest {
         stockPositionDao.insert(
             SecurityMovementEntity.EMPTY.copy(id = "AAPL", ticker = "AAPL"),

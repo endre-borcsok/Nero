@@ -29,4 +29,25 @@ class ViewStaTransformerTest {
             ).transform(),
         )
     }
+
+    @Test
+    fun `when transforms SecurityMovementsViewData then mapping is correct`() {
+        val date = Date()
+        assertEquals(
+            expected = SecurityMovement(
+                id = "id",
+                ticker = "ticker",
+                cost = 123.45676,
+                quantity = 999,
+                date = date,
+            ),
+            actual = SecurityMovementViewData(
+                id = "id",
+                ticker = "ticker",
+                cost = 123.45676,
+                quantity = 999,
+                date = date,
+            ).transform(),
+        )
+    }
 }

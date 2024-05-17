@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -49,6 +50,22 @@ internal class StocksViewModel @Inject constructor(
             stockRepository.addSecurityMovements(
                 securityMovements = getSecurityMovements(files),
             )
+        }
+    }
+
+    fun updateSecurityMovementsByAggregatedItem(
+        aggregatedSecurityMovement: SecurityMovementViewData,
+    ) {
+        viewModelScope.launch {
+            val persistedSecurityMovement =
+                stockRepository.getSecurityMovementById(aggregatedSecurityMovement.id)
+            val siblingSecurityMovements =
+                stockRepository.getSecurityMovementsByTicker(persistedSecurityMovement.ticker).first()
+            val updatedSecurityMovements =
+                siblingSecurityMovements.map {
+                    it.copy(ticker = aggregatedSecurityMovement.ticker)
+                }
+            stockRepository.addSecurityMovements(updatedSecurityMovements)
         }
     }
 }
