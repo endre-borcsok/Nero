@@ -3,6 +3,7 @@ package com.ebsoftware.nero.feature.stocks
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ebsoftware.nero.core.data.stocks.StockRepository
+import com.ebsoftware.nero.core.domain.GetAggregatedSecurityMovements
 import com.ebsoftware.nero.core.domain.GetSecurityMovements
 import com.ebsoftware.nero.core.model.SecurityMovement
 import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
@@ -21,12 +22,19 @@ import javax.inject.Inject
 internal class StocksViewModel @Inject constructor(
     private val stockRepository: StockRepository,
     private val getSecurityMovements: GetSecurityMovements,
+    private val getAggregatedSecurityMovements: GetAggregatedSecurityMovements,
 ) : ViewModel() {
 
     val uiState: StateFlow<StocksUiState> =
         stockRepository
             .getSecurityMovements()
-            .map<List<SecurityMovement>, StocksUiState> { StocksUiState.Success(it.map(SecurityMovement::transform)) }
+            .map<List<SecurityMovement>, StocksUiState> { securityMovements ->
+                StocksUiState.Success(
+                    securityMovements = securityMovements
+                        .run(getAggregatedSecurityMovements::invoke)
+                        .map(SecurityMovement::transform),
+                )
+            }
             .catch { emit(StocksUiState.Error(it)) }
             .stateIn(
                 scope = viewModelScope,

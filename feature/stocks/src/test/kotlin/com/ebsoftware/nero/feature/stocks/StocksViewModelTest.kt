@@ -1,6 +1,7 @@
 package com.ebsoftware.nero.feature.stocks
 
 import com.ebsoftware.nero.core.data.stocks.StockRepository
+import com.ebsoftware.nero.core.domain.GetAggregatedSecurityMovements
 import com.ebsoftware.nero.core.domain.GetSecurityMovements
 import com.ebsoftware.nero.core.model.SecurityMovement
 import com.ebsoftware.nero.feature.stocks.transform.transform
@@ -34,9 +35,13 @@ class StocksViewModelTest {
     @Mock
     private lateinit var getSecurityMovements: GetSecurityMovements
 
+    @Mock
+    private lateinit var getAggregatedSecurityMovements: GetAggregatedSecurityMovements
+
     private fun initViewModel() = StocksViewModel(
         stockRepository = stockRepository,
         getSecurityMovements = getSecurityMovements,
+        getAggregatedSecurityMovements = getAggregatedSecurityMovements,
     )
 
     @Test
@@ -46,10 +51,12 @@ class StocksViewModelTest {
 
     @Test
     fun `when security movements are collected successfully then ui state is Success`() = runTest {
-        val movements = listOf(SecurityMovement.EMPTY)
+        val movements = List(4) { SecurityMovement.EMPTY }
+        val aggregatedSecurityMovements = List(2) { SecurityMovement.EMPTY }
         whenever(stockRepository.getSecurityMovements()) doReturn flowOf(movements)
+        whenever(getAggregatedSecurityMovements.invoke(movements)) doReturn aggregatedSecurityMovements
         assertEquals(
-            expected = StocksUiState.Success(movements.map(SecurityMovement::transform)),
+            expected = StocksUiState.Success(aggregatedSecurityMovements.map(SecurityMovement::transform)),
             actual = initViewModel().uiState.first(),
         )
     }
