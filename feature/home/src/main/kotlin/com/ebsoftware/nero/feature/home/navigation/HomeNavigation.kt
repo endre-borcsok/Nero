@@ -4,6 +4,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.navigation
+import com.ebsoftware.nero.feature.securitymovements.navigation.navigateToSecurityMovements
+import com.ebsoftware.nero.feature.securitymovements.navigation.securityMovementsScreen
 import com.ebsoftware.nero.feature.stocks.navigation.STOCKS_ROUTE
 import com.ebsoftware.nero.feature.stocks.navigation.stocksScreen
 
@@ -21,7 +23,8 @@ fun NavGraphBuilder.homeNavigation(
         route = HOME_ROUTE,
     ) {
         stocksScreen(
-            openSecurityMovement = { },
+            openSecurityMovement = navController::navigateToSecurityMovements,
         )
+        securityMovementsScreen()
     }
 }

@@ -27,7 +27,7 @@ class StocksScreenTest {
             Screen(uiState = StocksUiState.Success(emptyList()))
         }
 
-        composeRule.onNodeWithTag("com.ebsoftware.nero.core.ui.stocks_testTag")
+        composeRule.onNodeWithTag("com.ebsoftware.nero.core.ui.stocks.StocksScreen_testTag")
             .assertIsDisplayed()
     }
 

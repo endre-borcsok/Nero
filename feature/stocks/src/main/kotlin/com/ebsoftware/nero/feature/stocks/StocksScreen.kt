@@ -22,7 +22,7 @@ import com.ebsoftware.nero.feature.stocks.navigation.STOCKS_ROUTE
 internal fun StocksRoute(
     modifier: Modifier = Modifier,
     viewModel: StocksViewModel = hiltViewModel(),
-    openSecurityMovement: (id: String) -> Unit,
+    openSecurityMovement: (ticker: String) -> Unit,
 ) {
     val contentResolver = LocalContext.current.contentResolver
     val multiFilePicker = rememberLauncherForActivityResult(
@@ -38,7 +38,7 @@ internal fun StocksRoute(
         uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
         onLaunchActivityForResult = multiFilePicker::launch,
         modifier = modifier.testTag(STOCKS_ROUTE),
-        onSecurityMovementClicked = { openSecurityMovement(it.id) },
+        onSecurityMovementClicked = { openSecurityMovement(it.ticker) },
         onEditSecurityMovementDetails = viewModel::updateSecurityMovementsByAggregatedItem,
     )
 }

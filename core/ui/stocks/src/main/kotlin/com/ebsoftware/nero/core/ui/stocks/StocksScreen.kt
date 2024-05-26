@@ -1,5 +1,7 @@
 package com.ebsoftware.nero.core.ui.stocks
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,6 +26,7 @@ internal object StocksScreenParameters {
     val columnSpacing = 8.dp
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StocksScreen(
     securityMovements: List<SecurityMovementViewData>,
@@ -35,7 +38,7 @@ fun StocksScreen(
     Scaffold(
         modifier = modifier
             .fillMaxSize()
-            .testTag("com.ebsoftware.nero.core.ui.stocks_testTag"),
+            .testTag("com.ebsoftware.nero.core.ui.stocks.StocksScreen_testTag"),
         floatingActionButton = {
             SmallFloatingActionButton(
                 onClick = onAddSecurityMovements,
@@ -49,11 +52,13 @@ fun StocksScreen(
             contentPadding = PaddingValues(StocksScreenParameters.contentPadding),
             verticalArrangement = Arrangement.spacedBy(StocksScreenParameters.columnSpacing),
         ) {
-            items(securityMovements) {
+            items(securityMovements) { viewData ->
                 SecurityMovement(
-                    viewData = it,
-                    onClick = onSecurityMovementClicked,
-                    onEditDetails = onEditSecurityMovementDetails,
+                    viewData = viewData,
+                    modifier = Modifier.combinedClickable(
+                        onClick = { onSecurityMovementClicked(viewData) },
+                        onLongClick = { onEditSecurityMovementDetails(viewData) },
+                    ),
                 )
             }
         }

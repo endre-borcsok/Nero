@@ -2,8 +2,6 @@ package com.ebsoftware.nero.core.ui.stocks
 
 import android.icu.text.DateFormat
 import androidx.annotation.StringRes
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -31,23 +29,16 @@ internal object SecurityMovementParams {
     val verticalSpacing = 16.dp
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SecurityMovement(
     viewData: SecurityMovementViewData,
     modifier: Modifier = Modifier,
-    onClick: (SecurityMovementViewData) -> Unit,
-    onEditDetails: (SecurityMovementViewData) -> Unit,
 ) {
     Card(
         shape = SecurityMovementParams.cardShape,
         modifier = modifier
             .height(IntrinsicSize.Min)
-            .clip(SecurityMovementParams.cardShape)
-            .combinedClickable(
-                onClick = { onClick(viewData) },
-                onLongClick = { onEditDetails(viewData) },
-            ),
+            .clip(SecurityMovementParams.cardShape),
     ) {
         Row(
             modifier = Modifier.padding(SecurityMovementParams.contentPadding),
@@ -96,7 +87,5 @@ internal fun SecurityMovementPreview() {
             quantity = 4,
             cost = 123.445,
         ),
-        onClick = {},
-        onEditDetails = {},
     )
 }

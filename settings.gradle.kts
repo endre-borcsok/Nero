@@ -19,6 +19,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "Nero"
 include(":app")
 include(":feature:home")
+include(":feature:securitymovements")
 include(":feature:stocks")
 include(":core:common")
 include(":core:domain")

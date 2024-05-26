@@ -10,4 +10,5 @@ android {
 
 dependencies {
     implementation(projects.feature.stocks)
+    implementation(projects.feature.securitymovements)
 }

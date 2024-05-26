@@ -13,7 +13,7 @@ fun NavController.navigateToStocks(
 ) = navigate(STOCKS_ROUTE, navOptions)
 
 fun NavGraphBuilder.stocksScreen(
-    openSecurityMovement: (id: String) -> Unit,
+    openSecurityMovement: (ticker: String) -> Unit,
 ) {
     composable(
         route = STOCKS_ROUTE,
