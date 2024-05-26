@@ -13,11 +13,15 @@ fun NavController.navigateToHome(
     navOptions: NavOptions,
 ) = navigate(HOME_ROUTE, navOptions)
 
-fun NavGraphBuilder.homeNavigation() {
+fun NavGraphBuilder.homeNavigation(
+    navController: NavController,
+) {
     navigation(
         startDestination = STOCKS_ROUTE,
         route = HOME_ROUTE,
     ) {
-        stocksScreen()
+        stocksScreen(
+            openSecurityMovement = { },
+        )
     }
 }

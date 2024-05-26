@@ -29,6 +29,7 @@ fun StocksScreen(
     securityMovements: List<SecurityMovementViewData>,
     modifier: Modifier = Modifier,
     onAddSecurityMovements: () -> Unit,
+    onSecurityMovementClicked: (SecurityMovementViewData) -> Unit,
     onEditSecurityMovementDetails: (SecurityMovementViewData) -> Unit,
 ) {
     Scaffold(
@@ -51,6 +52,7 @@ fun StocksScreen(
             items(securityMovements) {
                 SecurityMovement(
                     viewData = it,
+                    onClick = onSecurityMovementClicked,
                     onEditDetails = onEditSecurityMovementDetails,
                 )
             }
@@ -70,6 +72,7 @@ internal fun StocksScreenPreview() {
             )
         },
         onAddSecurityMovements = {},
+        onSecurityMovementClicked = {},
         onEditSecurityMovementDetails = {},
     )
 }

@@ -36,6 +36,7 @@ internal object SecurityMovementParams {
 fun SecurityMovement(
     viewData: SecurityMovementViewData,
     modifier: Modifier = Modifier,
+    onClick: (SecurityMovementViewData) -> Unit,
     onEditDetails: (SecurityMovementViewData) -> Unit,
 ) {
     Card(
@@ -44,7 +45,7 @@ fun SecurityMovement(
             .height(IntrinsicSize.Min)
             .clip(SecurityMovementParams.cardShape)
             .combinedClickable(
-                onClick = {},
+                onClick = { onClick(viewData) },
                 onLongClick = { onEditDetails(viewData) },
             ),
     ) {
@@ -95,6 +96,7 @@ internal fun SecurityMovementPreview() {
             quantity = 4,
             cost = 123.445,
         ),
+        onClick = {},
         onEditDetails = {},
     )
 }

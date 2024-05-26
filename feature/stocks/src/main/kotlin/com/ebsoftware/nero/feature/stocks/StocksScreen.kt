@@ -22,6 +22,7 @@ import com.ebsoftware.nero.feature.stocks.navigation.STOCKS_ROUTE
 internal fun StocksRoute(
     modifier: Modifier = Modifier,
     viewModel: StocksViewModel = hiltViewModel(),
+    openSecurityMovement: (id: String) -> Unit,
 ) {
     val contentResolver = LocalContext.current.contentResolver
     val multiFilePicker = rememberLauncherForActivityResult(
@@ -37,6 +38,7 @@ internal fun StocksRoute(
         uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
         onLaunchActivityForResult = multiFilePicker::launch,
         modifier = modifier.testTag(STOCKS_ROUTE),
+        onSecurityMovementClicked = { openSecurityMovement(it.id) },
         onEditSecurityMovementDetails = viewModel::updateSecurityMovementsByAggregatedItem,
     )
 }
@@ -46,11 +48,12 @@ internal fun Screen(
     uiState: StocksUiState,
     modifier: Modifier = Modifier,
     onLaunchActivityForResult: (String) -> Unit = {},
+    onSecurityMovementClicked: (SecurityMovementViewData) -> Unit = {},
     onEditSecurityMovementDetails: (SecurityMovementViewData) -> Unit = {},
 ) {
     val editedSecurityMovement = rememberSaveable { mutableStateOf<SecurityMovementViewData?>(null) }
 
-    editedSecurityMovement.value?.let {
+    editedSecurityMovement.value?.let { it ->
         EditSecurityMovementDialog(
             securityMovementViewData = it,
             onDismiss = { editedSecurityMovement.value = null },
@@ -66,6 +69,7 @@ internal fun Screen(
             securityMovements = uiState.aggregatedSecurityMovements,
             onAddSecurityMovements = { onLaunchActivityForResult("*/*") },
             modifier = modifier,
+            onSecurityMovementClicked = onSecurityMovementClicked,
             onEditSecurityMovementDetails = { editedSecurityMovement.value = it },
         )
         is StocksUiState.Loading -> LoadingScreen(

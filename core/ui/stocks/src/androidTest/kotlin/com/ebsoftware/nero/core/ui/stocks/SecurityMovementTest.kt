@@ -4,6 +4,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
 import org.junit.Rule
@@ -24,6 +25,7 @@ class SecurityMovementTest {
                 viewData = SecurityMovementViewData.EMPTY.copy(
                     ticker = "testTicker",
                 ),
+                onClick = {},
                 onEditDetails = { onEditDetailsInvoked = true },
             )
         }
@@ -32,5 +34,25 @@ class SecurityMovementTest {
             .performTouchInput { longClick() }
 
         assertTrue(onEditDetailsInvoked)
+    }
+
+    @Test
+    fun whenClickedThenInvokedOnClickedLambda() {
+        var onClickInvoked = false
+
+        composeRule.setContent {
+            SecurityMovement(
+                viewData = SecurityMovementViewData.EMPTY.copy(
+                    ticker = "testTicker",
+                ),
+                onClick = { onClickInvoked = true },
+                onEditDetails = {},
+            )
+        }
+
+        composeRule.onNodeWithText("testTicker")
+            .performClick()
+
+        assertTrue(onClickInvoked)
     }
 }

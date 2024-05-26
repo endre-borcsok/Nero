@@ -20,6 +20,7 @@ class StocksScreenTest {
     @Test
     fun whenScreenItemsAreClickedThenTheyAreInvokingTheCorrectLambdas() {
         var addSecurityMovementsClicked = false
+        var onSecurityMovementClicked = false
         var onEditSecurityMovementDetailsClicked = false
 
         composeRule.run {
@@ -27,6 +28,7 @@ class StocksScreenTest {
                 StocksScreen(
                     securityMovements = securityMovements,
                     onAddSecurityMovements = { addSecurityMovementsClicked = true },
+                    onSecurityMovementClicked = { onSecurityMovementClicked = true },
                     onEditSecurityMovementDetails = { onEditSecurityMovementDetailsClicked = true },
                 )
             }
@@ -35,9 +37,12 @@ class StocksScreenTest {
                 .performClick()
             onNodeWithText("AAPL1")
                 .performTouchInput { longClick() }
+            onNodeWithText("AAPL1")
+                .performClick()
         }
 
         assertTrue(addSecurityMovementsClicked)
+        assertTrue(onSecurityMovementClicked)
         assertTrue(onEditSecurityMovementDetailsClicked)
     }
 

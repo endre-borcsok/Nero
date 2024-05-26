@@ -19,6 +19,8 @@ internal fun NeroNavHost(
         startDestination = startDestination,
         modifier = modifier.testTag(HOME_ROUTE),
     ) {
-        homeNavigation()
+        homeNavigation(
+            navController = appState.navController,
+        )
     }
 }
