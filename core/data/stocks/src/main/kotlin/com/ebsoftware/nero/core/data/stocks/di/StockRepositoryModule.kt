@@ -10,11 +10,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface StockRepositoryModule {
+abstract class StockRepositoryModule {
 
     @Binds
     @Singleton
-    fun bindStockRepository(
+    internal abstract fun bindStockRepository(
         impl: LocalStockRepository,
     ): StockRepository
 }

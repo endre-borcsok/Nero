@@ -20,7 +20,7 @@ internal fun Project.configureAndroidTests(
 ) {
     commonExtension.apply {
         defaultConfig {
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            testInstrumentationRunner = "com.ebsoftware.nero.testing.android.NeroTestRunner"
         }
         dependencies {
             add("androidTestImplementation", project(":core:testing:android"))

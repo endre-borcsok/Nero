@@ -7,7 +7,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -16,7 +15,6 @@ import com.ebsoftware.nero.core.ui.base.LoadingScreen
 import com.ebsoftware.nero.core.ui.stocks.EditSecurityMovementDialog
 import com.ebsoftware.nero.core.ui.stocks.StocksScreen
 import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
-import com.ebsoftware.nero.feature.stocks.navigation.STOCKS_ROUTE
 
 @Composable
 internal fun StocksRoute(
@@ -37,7 +35,7 @@ internal fun StocksRoute(
     Screen(
         uiState = viewModel.uiState.collectAsStateWithLifecycle().value,
         onLaunchActivityForResult = multiFilePicker::launch,
-        modifier = modifier.testTag(STOCKS_ROUTE),
+        modifier = modifier,
         onSecurityMovementClicked = { openSecurityMovement(it.ticker) },
         onEditSecurityMovementDetails = viewModel::updateSecurityMovementsByAggregatedItem,
     )
