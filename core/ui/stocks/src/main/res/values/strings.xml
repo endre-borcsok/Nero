@@ -3,6 +3,7 @@
     <string name="stocks_screen_fab_content_description">Add security movements</string>
 
     <string name="security_movement_quantity_text">Quantity</string>
+    <string name="security_movement_cost_text">Cost</string>
 
     <string name="security_movement_edit_dialog_title">Edit security movement</string>
     <string name="security_movement_edit_dialog_ticker">Ticker</string>
