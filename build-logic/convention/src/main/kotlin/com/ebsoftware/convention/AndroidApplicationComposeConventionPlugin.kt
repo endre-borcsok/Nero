@@ -12,6 +12,7 @@ class AndroidApplicationComposeConventionPlugin : Plugin<Project> {
             with(pluginManager){
                 apply("com.android.application")
                 apply("app.cash.paparazzi")
+                apply("org.jetbrains.kotlin.plugin.compose")
             }
             val extension = extensions.getByType<ApplicationExtension>()
             configureAndroidCompose(extension)

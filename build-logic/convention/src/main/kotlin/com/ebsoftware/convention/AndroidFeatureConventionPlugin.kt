@@ -18,6 +18,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             pluginManager.apply {
                 apply("nero.android.library")
                 apply("org.jmailen.kotlinter")
+                apply("org.jetbrains.kotlin.plugin.compose")
             }
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true
