@@ -1,13 +1,13 @@
 package com.ebsoftware.nero.core.ui.stocks.model
 
 data class SecurityMovementGainViewData(
-    val id: String,
+    override val id: String,
     val ticker: String,
     val quantity: Int,
     val cost: Double,
     val gainPercent: Double,
     val gainAmount: Double,
-) {
+) : SecurityMovementItem {
     companion object {
         val EMPTY = SecurityMovementGainViewData(
             id = String(),

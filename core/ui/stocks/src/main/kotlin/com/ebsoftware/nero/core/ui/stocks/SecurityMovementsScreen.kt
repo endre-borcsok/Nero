@@ -8,7 +8,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementGainViewData
+import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementItem
 import com.ebsoftware.nero.core.ui.stocks.model.SecurityMovementViewData
 
 internal object SecurityMovementsScreenParameters {
@@ -18,7 +21,7 @@ internal object SecurityMovementsScreenParameters {
 
 @Composable
 fun SecurityMovementsScreen(
-    securityMovements: List<SecurityMovementViewData>,
+    securityMovements: List<SecurityMovementItem>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -29,13 +32,19 @@ fun SecurityMovementsScreen(
         verticalArrangement = Arrangement.spacedBy(SecurityMovementsScreenParameters.columnSpacing),
     ) {
         items(securityMovements) { viewData ->
-            SecurityMovement(
-                viewData = viewData,
-            )
+            when (viewData) {
+                is SecurityMovementViewData -> SecurityMovement(
+                    viewData = viewData,
+                )
+                is SecurityMovementGainViewData -> SecurityMovementGain(
+                    viewData = viewData,
+                )
+            }
         }
     }
 }
 
+@Preview
 @Composable
 internal fun SecurityMovementsScreenPreview() {
     SecurityMovementsScreen(
@@ -44,6 +53,22 @@ internal fun SecurityMovementsScreenPreview() {
                 ticker = "AAPL",
                 quantity = 4,
                 cost = 123.445,
+            )
+        },
+    )
+}
+
+@Preview
+@Composable
+internal fun SecurityMovementsGainScreenPreview() {
+    SecurityMovementsScreen(
+        securityMovements = List(5) {
+            SecurityMovementGainViewData.EMPTY.copy(
+                ticker = "AAPL",
+                quantity = 4,
+                cost = 123.445,
+                gainPercent = -12.5,
+                gainAmount = 1234.4,
             )
         },
     )

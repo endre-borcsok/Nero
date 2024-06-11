@@ -1,6 +1,5 @@
 package com.ebsoftware.nero.core.ui.stocks
 
-import android.icu.text.DateFormat
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -81,8 +80,9 @@ fun SecurityMovementGain(
     }
 }
 
-private fun getGainTextColor(gain: Double) =
-    if (gain > 0) Color.Green else Color.Red
+private fun getGainTextColor(
+    gain: Double,
+) = if (gain > 0) Color.Green else Color.Red
 
 @Composable
 @Preview
@@ -97,4 +97,3 @@ internal fun SecurityMovementGainPreview() {
         ),
     )
 }
-
