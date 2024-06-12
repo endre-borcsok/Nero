@@ -19,3 +19,5 @@ data class SecurityMovement(
         )
     }
 }
+
+fun SecurityMovement.price() = cost / quantity

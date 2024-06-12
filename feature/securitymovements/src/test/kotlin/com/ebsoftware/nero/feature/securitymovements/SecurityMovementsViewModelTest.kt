@@ -46,14 +46,17 @@ class SecurityMovementsViewModelTest {
     @Test
     fun `when initialised successfully then state is Success`() = runTest {
         savedStateHandle[ARG_TICKER_SYMBOL] = "AAPL"
+        val viewModel = initViewModel()
+        val latestPrice = viewModel.latestPrice.first()
+        val securityMovements = listOf(SecurityMovement.EMPTY)
         whenever(
             mockStockRepository.getSecurityMovementsByTicker("AAPL"),
-        ) doReturn flowOf(listOf(SecurityMovement.EMPTY))
+        ) doReturn flowOf(securityMovements)
         assertEquals(
             expected = SecurityMovementsUiState.Success(
-                securityMovements = listOf(SecurityMovement.EMPTY.transform()),
+                securityMovements = securityMovements.map { it.transform(latestPrice) },
             ),
-            actual = initViewModel().uiState.first(),
+            actual = viewModel.uiState.first(),
         )
     }
 
@@ -70,5 +73,22 @@ class SecurityMovementsViewModelTest {
                 actual = throwable.message,
             )
         }
+    }
+
+    @Test
+    fun `when initialised then uses last security movement to declare latest price`() = runTest {
+        savedStateHandle[ARG_TICKER_SYMBOL] = "AAPL"
+        val viewModel = initViewModel()
+        val securityMovements = listOf(
+            SecurityMovement.EMPTY.copy(cost = 66.0, quantity = 2),
+            SecurityMovement.EMPTY.copy(cost = 100.0, quantity = 2),
+        )
+        whenever(
+            mockStockRepository.getSecurityMovementsByTicker("AAPL"),
+        ) doReturn flowOf(securityMovements)
+        assertEquals(
+            expected = 50.0,
+            actual = viewModel.latestPrice.first(),
+        )
     }
 }
